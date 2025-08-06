@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.demo.dao.AttendanceListMapper">
+
+<!-- userIdに紐づく勤怠情報を取得 -->
+ <select id="findByUserId"  parameterType="int" resultType="com.example.demo.entity.AttendanceListEntity">
+        SELECT
+            attendance_id,
+            user_id,
+            start_date,
+            leaving_date,
+            start_time,
+            leaving_time,
+            operation_time,
+            break_time,
+            remarks
+        FROM
+            attendance_tbl
+        WHERE
+            user_id = #{userId}
+        ORDER BY
+            start_date; 
+    </select>
+	
+	
+</mapper>

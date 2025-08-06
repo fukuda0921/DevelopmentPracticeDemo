@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,22 +19,28 @@ import com.example.demo.service.AttendanceEditService;
 @RequestMapping
 public class AttendanceEditController {
 
-	@Autowired
+	/** 勤怠編集画面Service */
 	private AttendanceEditService attendanceEditService;
 
-	//	ユーザー情報
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param attendanceEditService 勤怠編集画面Service
+	 */
 	public AttendanceEditController(AttendanceEditService attendanceEditService) {
 		this.attendanceEditService = attendanceEditService;
 	}
 
-	//	 一覧表示
+	/**
+	 * 勤怠編集画面表示
+	 * 
+	 * @param userId
+	 * @param attendanceId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/attendanceEdit/{userId}/{attendanceId}")
-	public String AttendanceEdit(@PathVariable Integer userId,
-								 @PathVariable Integer attendanceId, 
-								 Model model) {
-//		// 複数件の勤怠情報を取得
-//		List<AttendanceEditDto> attendanceList = attendanceEditService.findByUserId(userId);
-//		model.addAttribute("attendanceList", attendanceList);
+	public String AttendanceEdit(@PathVariable Integer userId, @PathVariable Integer attendanceId,Model model) {
 
 		// 編集対象：1件のみ取得
 		AttendanceEditDto attendanceEditDto = attendanceEditService.findByAttendanceId(attendanceId);
@@ -44,8 +49,17 @@ public class AttendanceEditController {
 		return "attendanceEdit";
 	}
 
-	// ユーザー情報の更新
-//	@PostMapping
+	/**
+	 * 勤怠情報の編集処理（更新）
+	 * 
+	 * @param userId
+	 * @param attendanceId
+	 * @param action
+	 * @param attendanceEditDto
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/attendanceEdit/{userId}/{attendanceId}" ,method = RequestMethod.POST)
 	public String handleAttendance(
 	        @PathVariable Integer userId,
@@ -69,10 +83,10 @@ public class AttendanceEditController {
 		entity.setAttendanceId(attendanceEditDto.getAttendanceId());
 		entity.setUserId(attendanceEditDto.getUserId());
 		entity.setStartDate(attendanceEditDto.getStartDate());
-		entity.setEndDate(attendanceEditDto.getEndDate());
+		entity.setLeavingDate(attendanceEditDto.getEndDate());
 		entity.setStartTime(attendanceEditDto.getStartTime());
-		entity.setEndTime(attendanceEditDto.getEndTime());
-		entity.setWorkTime(attendanceEditDto.getWorkTime());
+		entity.setLeavingTime(attendanceEditDto.getEndTime());
+		entity.setOperationTime(attendanceEditDto.getWorkTime());
 		entity.setBreakTime(attendanceEditDto.getBreakTime());
 		entity.setRemarks(attendanceEditDto.getRemarks());
 
@@ -83,7 +97,13 @@ public class AttendanceEditController {
 		return "redirect:/home/attendance/attendanceList/{userId}";
 	}
 	
-	// 勤怠情報を削除
+	/**
+	 * 勤怠情報を削除
+	 * 
+	 * @param userId
+	 * @param attendanceId
+	 * @return
+	 */
 	@PostMapping("/attendanceEdit/{userId}/{attendanceId}/delete")
 	public String deleteAttendance(@PathVariable Integer userId,
 	                               @PathVariable Integer attendanceId) {

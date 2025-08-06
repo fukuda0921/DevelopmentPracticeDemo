@@ -10,7 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "attendance_tbl")
 public class AttendanceEditEntity {
 	@Id
@@ -18,115 +21,28 @@ public class AttendanceEditEntity {
 	@Column(name = "attendanceId")
 	private Integer attendanceId; // 勤怠ID（主キー）
 
-	@Column(name = "userId", nullable = false)
-	private Integer userId; // ユーザーID
+    @Column(nullable = false)
+    private Integer userId; // ユーザーID
 
-	@Column(name = "startDate")
-	private LocalDate startDate; // 出勤日
+    @Column(nullable = false)
+    private LocalDate startDate; // 出勤日
+    
+    @Column(name = "leaving_date", nullable = false)
+	private LocalDate leavingDate; // 退勤日
 
-	@Column(name = "endDate")
-	private LocalDate endDate; // 退勤日
+    @Column(nullable = false)
+    private LocalTime startTime; // 出勤時間
+    
+    @Column(name = "leaving_time", nullable = false)
+	private LocalTime leavingTime; // 退勤時間
 
-	@Column(name = "startTime")
-	private LocalTime startTime; // 出勤時間
+    @Column(name = "operation_time", nullable = false)
+	private LocalTime operationTime; // 稼働時間
 
-	@Column(name = "endTime")
-	private LocalTime endTime; // 退勤時間
-
-	@Column(name = "workTime")
-	private LocalTime workTime; // 勤務時間
-
-	@Column(name = "breakTime")
+	@Column(nullable = false)
 	private LocalTime breakTime; // 休憩時間
-	
-	@Column(name = "remarks")
-	private String remarks; // 備考
 
-	// --- コンストラクタ ---
-	public AttendanceEditEntity() {
-	}
-
-	// --- Getter & Setter ---
-
-	// 勤怠ID（主キー）
-	public Integer getAttendanceId() {
-		return attendanceId;
-	}
-
-	public void setAttendanceId(Integer attendanceId) {
-		this.attendanceId = attendanceId;
-	}
-	
-	// ユーザーID
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	// 出勤日
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	// 退勤日
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-
-	// 出勤時間
-	public LocalTime getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
-	}
-
-	// 退勤時間
-	public LocalTime getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
-	}
-
-	// 勤務時間
-	public LocalTime getWorkTime() {
-		return workTime;
-	}
-
-	public void setWorkTime(LocalTime workTime) {
-		this.workTime = workTime;
-	}
-
-	// 休憩時間
-	public LocalTime getBreakTime() {
-		return breakTime;
-	}
-
-	public void setBreakTime(LocalTime breakTime) {
-		this.breakTime = breakTime;
-	}
-
-	// 備考
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
+    @Column(length = 100)
+    private String remarks; // 備考
 
 }

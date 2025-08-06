@@ -32,10 +32,10 @@ public class AttendanceListDto {
 		this.attendanceId = attendanceListentity.getAttendanceId();
 		this.userId = attendanceListentity.getUserId();
 		this.startDate = attendanceListentity.getStartDate();
-		this.endDate = attendanceListentity.getEndDate();
+		this.endDate = attendanceListentity.getLeavingDate();
 		this.startTime = attendanceListentity.getStartTime();
-		this.endTime = attendanceListentity.getEndTime();
-		this.workTime = attendanceListentity.getWorkTime();
+		this.endTime = attendanceListentity.getLeavingTime();
+		this.workTime = attendanceListentity.getOperationTime();
 		this.breakTime = attendanceListentity.getBreakTime();
 		this.remarks = attendanceListentity.getRemarks();
 

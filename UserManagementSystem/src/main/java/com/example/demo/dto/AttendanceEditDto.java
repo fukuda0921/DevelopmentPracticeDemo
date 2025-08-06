@@ -69,10 +69,10 @@ public class AttendanceEditDto {
 		this.attendanceId = entity.getAttendanceId();
 		this.userId = entity.getUserId();
 		this.startDate = entity.getStartDate();
-		this.endDate = entity.getEndDate();
+		this.endDate = entity.getLeavingDate();
 		this.startTime = entity.getStartTime();
-		this.endTime = entity.getEndTime();
-		this.workTime = entity.getWorkTime();
+		this.endTime = entity.getLeavingTime();
+		this.workTime = entity.getOperationTime();
 		this.breakTime = entity.getBreakTime();
 		this.remarks = entity.getRemarks();
 	}

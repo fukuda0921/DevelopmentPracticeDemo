@@ -27,17 +27,17 @@ public class AttendanceListEntity {
     @Column(nullable = false)
     private LocalDate startDate; // 出勤日
     
-	@Column(nullable = false)
-	private LocalDate endDate; // 退勤日
+    @Column(name = "leaving_date", nullable = false)
+	private LocalDate leavingDate; // 退勤日
 
     @Column(nullable = false)
     private LocalTime startTime; // 出勤時間
     
-    @Column(nullable = false)
-	private LocalTime endTime; // 退勤時間
+    @Column(name = "leaving_time", nullable = false)
+	private LocalTime leavingTime; // 退勤時間
 
-	@Column(nullable = false)
-	private LocalTime workTime; // 稼働時間
+    @Column(name = "operation_time", nullable = false)
+	private LocalTime operationTime; // 稼働時間
 
 	@Column(nullable = false)
 	private LocalTime breakTime; // 休憩時間

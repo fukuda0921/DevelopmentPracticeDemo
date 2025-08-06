@@ -7,21 +7,19 @@
 
     <!-- 出勤情報の存在チェック -->
 	<select id="existsByUserIdAndStartDate" resultType="boolean">
-	SELECT EXISTS (
-	SELECT 1
+	SELECT COUNT(*)
 	FROM attendance_tbl
 	WHERE user_id = #{userId}
 	AND start_date = #{endDate}
-	)
 	</select>
 	
 	<!-- 既に退勤情報が存在しないかチェック -->
 	<select id="existsByUserIdAndEndDate" resultType="boolean">
-	SELECT EXISTS (
-	SELECT 1
+	SELECT COUNT(*)
 	FROM attendance_tbl
 	WHERE user_id = #{userId}
-	AND leaving_date = #{endDate} AND leaving_time IS NOT NULL )
+	AND leaving_date = #{endDate} 
+	AND leaving_time IS NOT NULL
     </select>
     
     <!-- 当日の勤怠情報を取得 -->
