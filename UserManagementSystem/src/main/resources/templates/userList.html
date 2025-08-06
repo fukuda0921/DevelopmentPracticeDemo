@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ユーザーリスト</title>
+        <link href="userList.css" rel="stylesheet">
+        <link th:href="@{css/userList.css}" rel="stylesheet">
+
+    </head>
+    <body>
+        <h2>ユーザー一覧</h2>
+    
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ユーザーID</th>
+                    <th>氏名</th>
+                    <th>フリガナ</th>
+                    <th>メールアドレス</th>
+                    <th>権限</th>
+                </tr>
+            </thead>
+            <tbody>
+				<tr th:each="user : ${userList}">
+				    <td th:text="${user.userId}"></td>
+				    <td th:text="${user.name}"></td>
+				    <td th:text="${user.kana}"></td>
+				    <td th:text="${user.address}"></td>
+				    <td th:text="${user.role == '1' ? '管理者' : '一般'}"></td>
+
+				    <td>
+						
+                        <!-- 管理者（user_role = 1）の場合：すべての行に詳細ボタン表示 -->
+						<a th:if="${isAdmin}" 
+
+						   th:href="@{/userDetail/{loginId}/{targetId}(loginId=${loginUserId}, targetId=${user.userId})}">
+						   編集・削除
+
+						   th:href="@{/home/userList/userEdit/{loginId}/{targetId}(loginId=${loginUserId}, targetId=${user.userId})}">
+						   ユーザー詳細
+						</a>
+						    <a th:if="${isAdmin}" th:href="@{/userDetail/projectList/{userId}(userId=${user.userId})}">案件一覧</a>
+						    <a th:if="${isAdmin}" th:href="@{/attendanceList/{userId}(userId=${user.userId})}">勤怠一覧</a>
+						</td>
+                        
+						<td>
+                        <!-- 一般ユーザー（user_role = 2）の場合：自分の行のみ表示 -->
+						<a th:if="${!isAdmin} and ${loginUserId == user.userId}" 
+
+						   th:href="@{/userDetail/{userId}(userId=${loginUserId})}">
+						   編集・削除
+
+						   th:href="@{/home/userList/userEdit/{userId}(userId=${loginUserId})}">
+						   ユーザー詳細
+
+						</a>
+							<a th:if="${!isAdmin} and ${loginUserId == user.userId}" 
+							th:href="@{/user/projectList/{userId}(userId=${user.userId})}">案件一覧</a>
+							
+							<a th:if="${!isAdmin} and ${loginUserId == user.userId}" 
+							th:href="@{/attendanceList/{userId}(userId=${user.userId})}">勤怠一覧</a>
+<!--						    <a th:href="@{/user/projectList/{userId}(userId=${loginUserId})}">案件一覧</a>-->
+<!--						    <a th:href="@{/attendanceList/{userId}(userId=${loginUserId})}">勤怠一覧</a>-->
+						</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <!-- 案件登録ボタン（管理者のみ） -->
+        <div th:if="${isAdmin}">
+            <a th:href="@{/userList/projectRegistration/{userId}(userId=${loginUserId})}">
+                案件登録
+            </a>
+		<!--戻るボタン-->
+			<a th:href="@{/home/{userId}(userId=${loginUserId})}">戻る</a>				
+        </div>
+		
+		<!--戻るボタン-->
+		<div th:if="${!isAdmin}">
+		    <a th:href="@{/home/{userId}(userId=${loginUserId})}">戻る</a>
+		</div>
+
+    </body>
+    </html>

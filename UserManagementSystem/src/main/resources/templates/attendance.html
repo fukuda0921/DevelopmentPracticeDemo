@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>勤怠情報</title>
+        <link th:href="@{css/attendance.css}" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <h1>勤怠情報</h1>
+    
+        <a th:href="@{/home/attendance/attendanceStart/{userId}(userId=${userId})}">出勤登録</a><br>
+        <a th:href="@{/home/attendance/attendanceEnd/{userId}(userId=${userId})}">退勤登録</a><br>
+        <a th:href="@{/home/attendance/attendanceList/{userId}(userId=${userId})}">勤怠一覧</a><br>
+        <a th:href="@{/home/{userId}(userId=${userId})}">戻る</a>
+    
+    </body>
+    </html>

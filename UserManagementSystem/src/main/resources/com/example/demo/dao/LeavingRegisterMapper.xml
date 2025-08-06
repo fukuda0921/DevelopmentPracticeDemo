@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.LeavingRegisterMapper">
+
+    <!-- 出勤情報の存在チェック -->
+	<select id="existsByUserIdAndStartDate" resultType="boolean">
+	SELECT EXISTS (
+	SELECT 1
+	FROM attendance_tbl
+	WHERE user_id = #{userId}
+	AND start_date = #{endDate}
+	)
+	</select>
+	
+	<!-- 既に退勤情報が存在しないかチェック -->
+	<select id="existsByUserIdAndEndDate" resultType="boolean">
+	SELECT EXISTS (
+	SELECT 1
+	FROM attendance_tbl
+	WHERE user_id = #{userId}
+	AND leaving_date = #{endDate} AND leaving_time IS NOT NULL )
+    </select>
+    
+    <!-- 当日の勤怠情報を取得 -->
+    <select id="findTopByUserIdOrderByStartDateDesc" parameterType="map" resultType="com.example.demo.entity.LeavingRegisterEntity">
+	SELECT
+	attendance_id,
+	user_id,
+	start_date,
+	leaving_date,
+	start_time,
+	leaving_time,
+	operation_time,
+	break_time,
+	remarks
+	FROM
+	attendance_tbl
+	WHERE
+	user_id = #{userId}
+	AND start_date = #{endDate} 
+    </select>
+    
+    <!-- 退勤情報を登録で勤怠テーブルを更新する -->
+    <update id="updateAttendance" parameterType="com.example.demo.entity.LeavingRegisterEntity">
+	UPDATE attendance_tbl
+	SET
+	leaving_date = #{endDate},
+	leaving_time = #{endTime},
+	break_time = #{breakTime},
+	operation_time = #{workTime}
+	WHERE
+	attendance_id = #{attendanceId}
+    </update>
+            
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.demo.dao.GoingRegisterMapper">
+
+<!-- 当日出勤データチェック -->
+	<select id="existsAttendance" resultType="boolean">
+       SELECT EXISTS (
+            SELECT 1
+        FROM attendance_tbl
+        WHERE user_id = #{userId} AND start_date = #{startDate}
+        )
+    </select>
+    
+    <!-- 出勤情報登録 -->
+    <insert id="saveAttendance" parameterType="com.example.demo.dao.GoingRegisterMapper">
+	INSERT INTO attendance_tbl (
+	user_id,
+	start_date,
+	start_time,
+	remarks
+	) VALUES (
+	#{userId},
+	#{startDate},
+	#{startTime},
+	#{remarks}
+	)
+    </insert>
+	
+</mapper>
