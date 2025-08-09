@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +22,26 @@ import com.example.demo.service.UserEditService;
 @Controller
 public class UserEditController {
 
-	private UserEditService userEditService;
-	private UserEditProjectService userEditProjectService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	/** ユーザー編集・削除Service */
+	private final UserEditService userEditService;
 	
-	//	ユーザー情報
-	public UserEditController(UserEditService userEditService) {
+	/** ユーザー案件編集Service */
+	private final UserEditProjectService userEditProjectService;
+
+	/** パスワードエンコーダー */
+	private final PasswordEncoder passwordEncoder;
+	
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param userEditService
+	 * @param userEditProjectService
+	 * @param passwordEncoder
+	 */
+	public UserEditController(UserEditService userEditService,UserEditProjectService userEditProjectService,PasswordEncoder passwordEncoder) {
 		this.userEditService = userEditService;
 		this.userEditProjectService = userEditProjectService;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	//	 一覧表示

@@ -3,23 +3,33 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.UserListMapper;
 import com.example.demo.entity.UserListEntity;
 import com.example.demo.repository.UserListRepository;
 @Service
 public class UserListService {
+	
 	private final UserListRepository userListRepository;
+	/** ユーザー一覧Mapper */
+	private final UserListMapper userListMapper;
 
-	@Autowired
-	public UserListService(UserListRepository userListRepository) {
+	
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param userListRepository
+	 * @param userListMapper ユーザー一覧Mapper
+	 */
+	public UserListService(UserListRepository userListRepository,UserListMapper userListMapper) {
 		this.userListRepository = userListRepository;
+		this.userListMapper = userListMapper;
 	}
 
 	//勤怠データ取得
 	public List<UserListEntity> getAllUserList() {
-		return userListRepository.findAll();
+		return userListMapper.findAll();
 	}
 
 	//	指定したユーザーIDの勤怠データを取得
@@ -44,6 +54,3 @@ public class UserListService {
 //			 
 //		 }
 	}
-
-
-;

@@ -21,7 +21,7 @@ public class UserListDto {
         this.kana = entity.getKana();
         this.address = entity.getAddress();
         this.password = entity.getPassword();
-        this.role = entity.getRole();
+//        this.role = entity.getRole();
     }
 
 	// --- ゲッターとセッター ---

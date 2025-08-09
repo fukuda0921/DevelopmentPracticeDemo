@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +16,14 @@ import com.example.demo.service.UserListService;
 @Controller
 public class UserListController {
 
+	/** ユーザー一覧Service */
 	private final UserListService userListService;
 
-	@Autowired
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param userListService
+	 */
 	public UserListController(UserListService userListService) {
 		this.userListService = userListService;
 	}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.UserListMapper">
+
+
+     <select id="findAll" resultType="com.example.demo.entity.UserListEntity">
+        SELECT
+            user_id,
+            name,
+            kana,
+            address
+        FROM
+            user_tbl
+        ORDER BY
+            user_id;
+    </select>
+
+
+
+</mapper>

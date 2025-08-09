@@ -34,14 +34,14 @@
             <!-- メールアドレス -->
             <div>
                 <label for="address">メールアドレス:</label>
-				<input type="text" id="email" th:field="*{address}" maxlength="60" >
+				<input type="text"  th:field="*{address}" maxlength="60"  >
                 <span class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
             </div>
     
             <!-- パスワード -->
             <div>
                 <label for="password">パスワード:</label>
-                <input type="password" id="password" th:field="*{password}" maxlength="60" >
+                <input type="password"  th:field="*{password}" maxlength="60" autocomplete="new-password" >
                 <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
             </div>
 			

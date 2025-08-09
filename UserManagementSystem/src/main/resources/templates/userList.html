@@ -22,6 +22,7 @@
                     <th>フリガナ</th>
                     <th>メールアドレス</th>
                     <th>権限</th>
+					<th>詳細</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,15 +34,10 @@
 				    <td th:text="${user.role == '1' ? '管理者' : '一般'}"></td>
 
 				    <td>
-						
                         <!-- 管理者（user_role = 1）の場合：すべての行に詳細ボタン表示 -->
 						<a th:if="${isAdmin}" 
-
 						   th:href="@{/userDetail/{loginId}/{targetId}(loginId=${loginUserId}, targetId=${user.userId})}">
 						   編集・削除
-
-						   th:href="@{/home/userList/userEdit/{loginId}/{targetId}(loginId=${loginUserId}, targetId=${user.userId})}">
-						   ユーザー詳細
 						</a>
 						    <a th:if="${isAdmin}" th:href="@{/userDetail/projectList/{userId}(userId=${user.userId})}">案件一覧</a>
 						    <a th:if="${isAdmin}" th:href="@{/attendanceList/{userId}(userId=${user.userId})}">勤怠一覧</a>
@@ -52,9 +48,9 @@
 						<a th:if="${!isAdmin} and ${loginUserId == user.userId}" 
 
 						   th:href="@{/userDetail/{userId}(userId=${loginUserId})}">
-						   編集・削除
+<!--						   編集・削除-->
 
-						   th:href="@{/home/userList/userEdit/{userId}(userId=${loginUserId})}">
+<!--						   th:href="@{/home/userList/userEdit/{userId}(userId=${loginUserId})}">-->
 						   ユーザー詳細
 
 						</a>

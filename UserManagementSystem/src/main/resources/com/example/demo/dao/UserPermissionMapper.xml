@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.UserPermissionMapper">
+
+     <!-- ユーザー権限情報を登録 -->
+     <insert id="insertUserPermission" parameterType="com.example.demo.entity.UserPermission">
+        INSERT INTO user_permission_tbl (
+            user_id,
+            role
+        ) VALUES (
+            #{userId}, #{role}    )
+    </insert>
+
+
+
+</mapper>
