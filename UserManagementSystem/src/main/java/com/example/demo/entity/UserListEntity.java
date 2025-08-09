@@ -25,8 +25,7 @@ public class UserListEntity {
 	@Column(name = "password")
 	private String password;
 
-//	@Column(name = "role") 
-//	private String role; // ロール情報を格納
+	private String role; // ロール情報を格納
 
 	// --- ゲッターとセッター ---
 	public Integer getUserId() {
@@ -53,12 +52,12 @@ public class UserListEntity {
 		this.password = password;
 	}
 
-//	public String getRole() {
-//		return role;
-//	}
-//
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 }

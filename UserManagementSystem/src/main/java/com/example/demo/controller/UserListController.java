@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -39,11 +39,12 @@ public class UserListController {
 		
 		
 		// DTOに変換
-	    List<UserListDto> userDtoList = userList.stream()
-	        .map(user -> new UserListDto(user)) // UserListEntityからUserListDtoに変換
-	        .collect(Collectors.toList());
+		List<UserListDto> userDtoList = new ArrayList<>();
+		for (UserListEntity userEntity : userList) { 
+		    userDtoList.add(new UserListDto(userEntity)); 
+		}
 		
-		model.addAttribute("userList", userList);
+	    model.addAttribute("userList", userDtoList); // DTOに変換したリストをModelに追加する
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("loginUserId", loginUserId);
 
