@@ -5,8 +5,8 @@
 <mapper
 	namespace="com.example.demo.dao.AttendanceEditMapper">
 
-<!-- 当日出勤データチェック -->
- <select id="findByAttendanceId"  parameterType="int" resultType="com.example.demo.entity.AttendanceEditEntity">
+    <!-- 勤怠IDに紐づく勤怠情報を取得 -->
+    <select id="findByAttendanceId"  parameterType="int" resultType="com.example.demo.entity.AttendanceEditEntity">
         SELECT
             attendance_id,
             user_id,
@@ -22,5 +22,28 @@
         WHERE
             attendance_id = #{attendanceId}
     </select>
+    
+    <!-- 勤怠IDに紐づく勤怠情報を更新 -->
+    <update id="update" parameterType="com.example.demo.entity.AttendanceEditEntity">
+        UPDATE attendance_tbl
+        SET
+            start_date = #{startDate},
+            leaving_date = #{leavingDate}, 
+            start_time = #{startTime},
+            leaving_time = #{leavingTime},  
+            operation_time = #{operationTime},
+            break_time = #{breakTime},
+            remarks = #{remarks}
+        WHERE
+            attendance_id = #{attendanceId}
+    </update>
+    
+     <!-- 勤怠IDに紐づく勤怠情報を削除 -->
+    <delete id="deleteByAttendanceId" parameterType="int">
+        DELETE FROM
+            attendance_tbl
+        WHERE
+            attendance_id = #{attendanceId}
+    </delete>
 	
 </mapper>

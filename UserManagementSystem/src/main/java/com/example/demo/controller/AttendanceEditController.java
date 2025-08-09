@@ -60,14 +60,14 @@ public class AttendanceEditController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/attendanceEdit/{userId}/{attendanceId}" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/attendanceEdit/{userId}/{attendanceId}", method = RequestMethod.POST)
 	public String handleAttendance(
-	        @PathVariable Integer userId,
-	        @PathVariable Integer attendanceId,
-	        @RequestParam(name = "action", required = false) String action,
-	        @ModelAttribute("AttendanceEditDto") AttendanceEditDto attendanceEditDto,
-	        BindingResult bindingResult,
-	        Model model) {
+			@PathVariable Integer userId,
+			@PathVariable Integer attendanceId,
+			@RequestParam(name = "action", required = false) String action,
+			@ModelAttribute("AttendanceEditDto") AttendanceEditDto attendanceEditDto,
+			BindingResult bindingResult,
+			Model model) {
 		
 		if ("delete".equals(action)) {
 	        attendanceEditService.deleteAttendance(attendanceId);
