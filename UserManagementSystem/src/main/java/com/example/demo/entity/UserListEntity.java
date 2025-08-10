@@ -5,7 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "user_tbl")
 public class UserListEntity {
 
@@ -25,39 +28,7 @@ public class UserListEntity {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "role")
 	private String role; // ロール情報を格納
-
-	// --- ゲッターとセッター ---
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getKana() {
-		return kana;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 }

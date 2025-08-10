@@ -37,5 +37,4 @@ public class UserRegistrationEntity {
     @Column(nullable = false)
 	private Integer deleteFlag;
 	
-
 }

@@ -36,7 +36,6 @@
             name = #{name},
             kana = #{kana},
             address = #{address},
-            password = #{password},
             role = #{role}
         WHERE
             user_id = #{userId}

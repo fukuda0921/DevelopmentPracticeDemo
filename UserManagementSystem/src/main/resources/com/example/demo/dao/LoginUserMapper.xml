@@ -6,7 +6,7 @@
 <mapper namespace="com.example.demo.dao.LoginUserMapper">
 
       <!-- ユーザー情報取得する  -->
-      <select id="findByUserId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.User">
+      <select id="findByUserId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.UserEntity">
         SELECT
             user_id,
             name,

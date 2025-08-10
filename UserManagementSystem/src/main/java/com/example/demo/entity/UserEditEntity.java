@@ -20,14 +20,15 @@ public class UserEditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
+	
     private String name;
-    private String kana;
-    private String address;
-    private String password;
-    private Integer role;
     
- 	public void setRole(Integer role) {
- 		this.role = role;
- 	}
+    private String kana;
+    
+    private String address;
+    
+    private String password;
+    
+    private Integer role;
 
 }

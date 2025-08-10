@@ -35,8 +35,6 @@ public class UserEditDto {
 	//	@Pattern(regexp = "^[a-zA-Z0-9._-]+$",message = "半角で入力してください")
 	private String address; // メールアドレス
 
-	private String password; // パスワード
-
 	@NotNull(message = "権限を選択してください")
 	private Integer role; // 権限
 	
@@ -50,7 +48,6 @@ public class UserEditDto {
 		this.name = entity.getName();
 		this.kana = entity.getKana();
 		this.address = entity.getAddress();
-		this.password = entity.getPassword();
 		this.role = entity.getRole();
 	}
 }

@@ -80,17 +80,6 @@ public class UserEditController {
 
 		if ("edit".equals(action)) {
 
-			// パスワードの手動バリデーション
-			if (org.springframework.util.StringUtils.hasText(userEditDto.getPassword())) {
-				// パスワードが入力された場合のみ、長さとパターンのチェックを行う
-				if (userEditDto.getPassword().length() < 1 || userEditDto.getPassword().length() > 60) {
-					result.rejectValue("password", "Size", "パスワードは1文字以上60文字以下で入力してください"); 
-				}
-				if (!userEditDto.getPassword().matches("^[a-zA-Z0-9._-]+$")) {
-					result.rejectValue("password", "Pattern", "パスワードは半角英数字、記号(._-)で入力してください");
-				}
-			}
-
 			// 登録ボタンが押されたときの処理
 			if (result.hasErrors()) {
 				model.addAttribute("loginUserId", loginUserId);

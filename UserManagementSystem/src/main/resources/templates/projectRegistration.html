@@ -71,9 +71,7 @@
         <!-- ボタン配置 -->
         <div>
             <button type="submit" class="btn">登録</button>
-            <a th:href="@{/userList/{userId}(userId=${userId})}"></a>
-            <button type="button" class="btn">戻る</button>
-            <a th:href="@{/userList/{userId}(userId=${userId})}"></a>
+             <a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn">戻る</a>
         </div>
     </form>
 </body>
