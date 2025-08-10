@@ -78,10 +78,17 @@ public class UserEditController {
 			@RequestParam String action,
 			Model model) {
 
+		// 登録ボタンが押されたときの処理
 		if ("edit".equals(action)) {
 
-			// 登録ボタンが押されたときの処理
 			if (result.hasErrors()) {
+				model.addAttribute("loginUserId", loginUserId);
+				return "userEdit";
+			}
+
+			//メールアドレス存在するかチェック
+			if (userEditService.isEmailDuplicateForOtherUsers(userEditDto.getAddress(), userEditDto.getUserId())) {
+				result.rejectValue("address", "duplicateEmail", "このメールアドレスは既に他のユーザーに登録されています");
 				model.addAttribute("loginUserId", loginUserId);
 				return "userEdit";
 			}
@@ -93,8 +100,8 @@ public class UserEditController {
 			// 更新後に一覧画面などにリダイレクト
 			return "redirect:/home/userList/" + loginUserId;
 
-		} else if ("delete".equals(action)) {
 			// 削除ボタンが押されたときの処理
+		} else if ("delete".equals(action)) {
 
 			userEditService.deleteUser(targetUserId);
 

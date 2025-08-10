@@ -40,8 +40,8 @@ public class GoingRegisterController {
 	 */
 	@GetMapping("/home/attendance/attendanceStart/{userId}")
 	public String attendanceStart(@PathVariable String userId, Model model) {
-		model.addAttribute("userId", userId); // ← 画面に渡す
-		model.addAttribute("GoingRegisterDto", new GoingRegisterDto()); // フォーム用オブジェクト
+		model.addAttribute("userId", userId); 
+		model.addAttribute("GoingRegisterDto", new GoingRegisterDto()); 
 		return "attendanceStart";
 	}
 

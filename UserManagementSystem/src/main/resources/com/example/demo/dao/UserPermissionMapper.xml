@@ -6,14 +6,12 @@
 <mapper namespace="com.example.demo.dao.UserPermissionMapper">
 
      <!-- ユーザー権限情報を登録 -->
-     <insert id="insertUserPermission" parameterType="com.example.demo.entity.UserPermission">
+     <insert id="insertUserPermission" parameterType="com.example.demo.entity.UserPermissionEntity">
         INSERT INTO user_permission_tbl (
-            user_id,
-            role
+            role_id,
+            name
         ) VALUES (
-            #{userId}, #{role}    )
+            #{role_id}, #{roleId}    )
     </insert>
-
-
 
 </mapper>

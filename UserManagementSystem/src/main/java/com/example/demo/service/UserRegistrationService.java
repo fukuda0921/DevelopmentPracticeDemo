@@ -27,6 +27,19 @@ public class UserRegistrationService {
 		this.userRegistrationMapper = userRegistrationMapper;
 		this.passwordEncoder = passwordEncoder;
 	}
+	
+	/**
+	 * メールアドレスの存在チェックを行う
+	 * @param emailAddress 
+	 * @throws RuntimeException 
+	 */
+	public boolean checkEmailExists(String emailAddress) {
+
+		int existingUserCount = userRegistrationMapper.countByAddress(emailAddress);
+
+		return existingUserCount > 0; 
+
+	}
 
 	/**
 	 * ユーザー登録処理
@@ -34,6 +47,7 @@ public class UserRegistrationService {
 	 * @param form
 	 */
 	public void saveUser(UserRegistrationDto form) {
+
 		UserRegistrationEntity entity = new UserRegistrationEntity();
 		entity.setName(form.getName());
 		entity.setKana(form.getKana());

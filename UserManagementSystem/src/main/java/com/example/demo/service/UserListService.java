@@ -23,9 +23,20 @@ public class UserListService {
 		this.userListMapper = userListMapper;
 	}
 
-	//勤怠データ取得
+	/**
+	 * 人員情報取得
+	 * 
+	 * @return
+	 */
 	public List<UserListEntity> getAllUserList() {
-		return userListMapper.findAll();
+
+		List<UserListEntity> userList = userListMapper.findAll();
+
+		if (userList.isEmpty()) {
+			throw new RuntimeException("人員情報が見つかりません");
+		}
+
+		return userList;
 	}
 
 }

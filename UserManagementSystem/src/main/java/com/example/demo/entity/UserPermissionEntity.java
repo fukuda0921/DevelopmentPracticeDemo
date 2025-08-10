@@ -10,7 +10,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "user_permission_tbl")
-public class UserPermission {
+public class UserPermissionEntity {
 	
 	@Id
     @Column(name = "role_id")

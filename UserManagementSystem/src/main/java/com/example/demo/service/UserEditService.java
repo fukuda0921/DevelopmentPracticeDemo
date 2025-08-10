@@ -65,7 +65,21 @@ public class UserEditService {
 		entity.setRole(dto.getRole());
 		return entity;
 	}
+	
 
+	/**
+     * 指定したユーザーID以外,メールアドレスが既に登録されているかをチェック
+     * @param address 
+     * @param userId 
+     * @return 既に存在すれば true、存在しなければ false
+     */
+    public boolean isEmailDuplicateForOtherUsers(String address, Integer userId) { 
+    	
+        int count = userEditMapper.countByAddressAndExcludeUserId(address, userId);
+        
+        return count > 0;
+    }
+	
 	/**
 	 * ユーザー情報の更新
 	 * 

@@ -59,10 +59,6 @@ public class LeavingRegisterController {
 	public String registerAttendanceEnd(@Valid @ModelAttribute("LeavingRegisterDto") LeavingRegisterDto form,
 			BindingResult result, @PathVariable("userId") Integer userId, Model model) {
 
-		// 入力された退勤日が出勤日と一致しない場合のエラー（業務チェック）
-		// DBから最新の出勤日を取得
-		//		LocalDate latestStartDate = leavingRegisterService.getLatestStartDateByUserId(form.getUserId());
-
 		// 入力された退勤日と比較
 		if (form.getEndDate() == null || !leavingRegisterService.existsStartDateForUser(userId, form.getEndDate())) {
 			result.rejectValue("endDate", null, ErrorMessage.NOT_MUCH_WORK_DATE);
@@ -91,7 +87,6 @@ public class LeavingRegisterController {
 			// 退勤日・退勤時間を現在日時にセット（必要に応じてフォーム値に変えてもOK）
 			attendance.setEndDate(form.getEndDate());
 			attendance.setEndTime(form.getEndTime());
-			// 休憩時間はフォームから受け取ってセット（もしあれば）
 			attendance.setBreakTime(form.getBreakTime());
 
 			// 勤怠情報を更新

@@ -22,7 +22,6 @@ public class AttendanceListService {
 		this.attendanceListMapper = attendanceListMapper;
 	}
 
-	//	
 	/**
 	 * ユーザー情報全検索
 	 * 
@@ -30,7 +29,15 @@ public class AttendanceListService {
 	 * @return
 	 */
 	public List<AttendanceListEntity> getAttendanceByUserId(Integer userId) {
-		return attendanceListMapper.findByUserId(userId);
+		
+		List<AttendanceListEntity> attendanceList = attendanceListMapper.findByUserId(userId);
+		
+		// リストが空かどうかをチェックし、空であればエラーをスロー
+        if (attendanceList.isEmpty()) {
+            throw new RuntimeException("対象の出勤情報が見つかりません（ユーザーID: " + userId + "）");
+        }
+		
+		return attendanceList;
 	}
 
 }

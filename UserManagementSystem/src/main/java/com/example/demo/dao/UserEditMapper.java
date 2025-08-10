@@ -18,12 +18,13 @@ public interface UserEditMapper {
 	List<UserEditEntity> findByUserId(Integer targetUserId);
 
 	/**
-	 * 指定したユーザーIDのパスワードを取得
+	 * 指定したユーザーID以外で同じメールアドレス存在するかチェック
 	 * 
+	 * @param address
 	 * @param userId
 	 * @return
 	 */
-	String findByIdGetPassword(@Param("userId") Integer userId);
+	int countByAddressAndExcludeUserId(@Param("address") String address, @Param("userId") Integer userId);
 
 	/**
 	 * ユーザー情報を更新

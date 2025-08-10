@@ -2,7 +2,7 @@ package com.example.demo.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.entity.UserPermission;
+import com.example.demo.entity.UserPermissionEntity;
 
 @Mapper
 public interface UserPermissionMapper {
@@ -12,6 +12,6 @@ public interface UserPermissionMapper {
 	 * @param entity ユーザー権限エンティティ
 	 * @return 挿入されたレコードの数
 	 */
-	int insertUserPermission(UserPermission entity);
+	int insertUserPermission(UserPermissionEntity entity);
 
 }

@@ -1,6 +1,7 @@
 package com.example.demo.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.entity.UserRegistrationEntity;
 
@@ -13,5 +14,13 @@ public interface UserRegistrationMapper {
 	 * @return 挿入されたレコードの数
 	 */
 	int insertUser(UserRegistrationEntity entity);
+	
+	/**
+	 * 既にメールアドレスが存在するかチェック
+	 * 
+	 * @param address
+	 * @return
+	 */
+	int countByAddress(@Param("address") String address);
 
 }

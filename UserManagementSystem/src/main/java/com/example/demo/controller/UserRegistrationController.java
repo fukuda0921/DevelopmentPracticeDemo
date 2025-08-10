@@ -66,7 +66,7 @@ public class UserRegistrationController {
 			BindingResult result,
 			@PathVariable("userId") String userId,
 			Model model) {
-		//		     バリデーションチェック
+		//バリデーションチェック
 		if (result.hasErrors()) {
 			model.addAttribute("userId", userId);
 
@@ -77,6 +77,14 @@ public class UserRegistrationController {
 			model.addAttribute("roleOptions", roleOptions);
 			return "userRegistration";
 		} else {
+			
+			//メールアドレス存在するかチェック
+			 if (userRegistrationService.checkEmailExists(form.getAddress())) { 
+		            result.rejectValue("address","duplicateEmail",  "このメールアドレスは既に登録されています"  );
+		            model.addAttribute("userId", userId);
+		            return "userRegistration";
+		        }
+;			
 			userRegistrationService.saveUser(form);
 			return "redirect:/home/userDetail/" + userId;
 		}
