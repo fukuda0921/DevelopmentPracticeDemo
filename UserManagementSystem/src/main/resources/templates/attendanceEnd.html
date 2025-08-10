@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>退勤登録</title>
-        <link th:href="@{css/attendanceEnd.css}" rel="stylesheet">
-    </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>退勤登録</title>
+    <link th:href="@{css/attendanceEnd.css}" rel="stylesheet">
+</head>
+
 <body>
     <h2>退勤登録</h2>
 
-    <form th:action="@{/home/attendance/attendanceEnd/{userId}(userId=${userId})}" th:object="${LeavingRegisterDto}" method="post" >
+    <form th:action="@{/home/attendance/attendanceEnd/{userId}(userId=${userId})}" th:object="${LeavingRegisterDto}"
+        method="post">
         <!-- 勤怠ID（非活性） -->
-<!--        <div>-->
-<!--            <label>勤怠ID：</label>-->
-<!--            <input type="text" th:value="${attendanceId}" name="attendanceId" disabled>-->
-<!--        </div>-->
+        <!--        <div>-->
+        <!--            <label>勤怠ID：</label>-->
+        <!--            <input type="text" th:value="${attendanceId}" name="attendanceId" disabled>-->
+        <!--        </div>-->
 
         <!-- ユーザーID（非活性） -->
         <div>
@@ -30,10 +30,10 @@
         <div>
             <label>退勤日：</label>
             <input type="date" th:field="*{endDate}" />
-			<!-- バリデーションエラー（@NotNullなど）用 -->
-			   <span class="error-message" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span>
-			 <!-- 業務チェック（重複など）エラー用 -->
-<!--			    <span class="error-message" th:if="${endDate != null}" th:text="${endDate}"></span>-->
+            <!-- バリデーションエラー（@NotNullなど）用 -->
+            <span class="error-message" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span>
+            <!-- 業務チェック（重複など）エラー用 -->
+            <!--			    <span class="error-message" th:if="${endDate != null}" th:text="${endDate}"></span>-->
         </div>
 
         <!-- 退勤時間 -->
@@ -57,16 +57,17 @@
             <span class="error-message" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}"></span>
         </div>
 
-		<div>
-			<!-- 登録ボタン（form送信） -->
-			      <button type="submit" class="btn" 
-					th:onclick="|location.href='@{/home/attendance/{userId}(userId=${userId})}'|">登録</button>
-<!--					<button type="submit" class="btn">登録</button>-->
+        <div>
+            <!-- 登録ボタン（form送信） -->
+            <button type="submit" class="btn"
+                th:onclick="|location.href='@{/home/attendance/{userId}(userId=${userId})}'|">登録</button>
+            <!--					<button type="submit" class="btn">登録</button>-->
 
-			    <!-- 戻るボタン（リンク） -->
-			    <a th:href="@{/home/attendance/{userId}(userId=${userId})}" class="btn">戻る</a>
-		     </a>
-		 </div>
-  </form>
+            <!-- 戻るボタン（リンク） -->
+            <a th:href="@{/home/attendance/{userId}(userId=${userId})}" class="btn">戻る</a>
+            
+        </div>
+    </form>
 </body>
+
 </html>

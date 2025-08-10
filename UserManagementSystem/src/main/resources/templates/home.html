@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ホーム画面</title>
-        <link th:href="@{/css/home.css}" rel="stylesheet">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム画面</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
 
-        <h1>ホーム画面</h1>
-    
-		<a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠ボタン</a><br>
-		<a th:href="@{/home/userDetail/{userId}(userId=${userId})}">ユーザー情報ボタン</a><br>
-		<a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧ボタン</a>
+</head>
 
-    
-    </body>
-    </html>
+<body>
+
+    <h1>ホーム画面</h1>
+
+    <a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠ボタン</a><br>
+    <a th:href="@{/home/userDetail/{userId}(userId=${userId})}">ユーザー情報ボタン</a><br>
+    <a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧ボタン</a>
+
+
+</body>
+
+</html>

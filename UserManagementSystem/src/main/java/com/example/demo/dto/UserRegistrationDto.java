@@ -40,7 +40,7 @@ public class UserRegistrationDto {
 	private String password; // パスワード
 
 	@NotNull(message = "権限を選択してください")
-	private String role; // 権限
+	private Integer role; // 権限
 
 	// ゲッターとセッター
 
@@ -90,11 +90,11 @@ public class UserRegistrationDto {
 	}
 	
 	// 権限
-	public String getRole() {
+	public Integer getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Integer role) {
 		this.role = role;
 	}
 }

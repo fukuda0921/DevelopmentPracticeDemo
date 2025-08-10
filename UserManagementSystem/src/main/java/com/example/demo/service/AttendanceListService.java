@@ -9,10 +9,10 @@ import com.example.demo.entity.AttendanceListEntity;
 
 @Service
 public class AttendanceListService {
-	
+
 	/** 勤怠一覧Mapper */
 	private final AttendanceListMapper attendanceListMapper;
-	
+
 	/**
 	 * コンストラクタインジェクション
 	 * 
@@ -21,19 +21,6 @@ public class AttendanceListService {
 	public AttendanceListService(AttendanceListMapper attendanceListMapper) {
 		this.attendanceListMapper = attendanceListMapper;
 	}
-
-//	//	ユーザー情報（リポジトリ）
-//	@Autowired
-//	private final AttendanceListRepository attendanceListRepository;
-//
-//	public AttendanceListService(AttendanceListRepository attendanceListRepository) {
-//		this.attendanceListRepository = attendanceListRepository;
-//	}
-
-	// ユーザー情報取得
-//	public List<AttendanceListEntity> getAllAttendanceList() {
-//		return attendanceListMapper.findAll();
-//	}
 
 	//	
 	/**
@@ -45,10 +32,5 @@ public class AttendanceListService {
 	public List<AttendanceListEntity> getAttendanceByUserId(Integer userId) {
 		return attendanceListMapper.findByUserId(userId);
 	}
-	
-//	勤怠データを ID で取得
-//	public Optional<AttendanceListEntity> getUserListById(Integer id) {
-//		return attendanceListMapper.findById(id);
-//	}
 
 }

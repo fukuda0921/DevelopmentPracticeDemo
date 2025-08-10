@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>出勤登録</title>
-        <link th:href="@{css/attendanceStart.css}" rel="stylesheet">
-    </head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出勤登録</title>
+    <link th:href="@{css/attendanceStart.css}" rel="stylesheet">
+</head>
+
 <body>
     <h2>出勤登録</h2>
 
-<!--    <form th:action="@{/home/attendance/attendanceStart/{userId}(userId=${userId})}" method="post" th:object="${GoingRegisterDto}">-->
-	<form th:action="@{/home/attendance/attendanceStart/__${userId}__}" th:object="${GoingRegisterDto}" method="post">
+    <!--    <form th:action="@{/home/attendance/attendanceStart/{userId}(userId=${userId})}" method="post" th:object="${GoingRegisterDto}">-->
+    <form th:action="@{/home/attendance/attendanceStart/__${userId}__}" th:object="${GoingRegisterDto}" method="post">
 
         <!-- 勤怠ID（非活性） -->
         <div>
@@ -32,10 +29,10 @@
         <div>
             <label>出勤日：</label>
             <input type="date" th:field="*{startDate}" />
-			<!-- バリデーションエラー（@NotNullなど）用 -->
-			   <span class="error-message" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
-			 <!-- 業務チェック（重複など）エラー用 -->
-			    <span class="error-message" th:if="${startDate != null}" th:text="${startDate}"></span>
+            <!-- バリデーションエラー（@NotNullなど）用 -->
+            <span class="error-message" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
+            <!-- 業務チェック（重複など）エラー用 -->
+            <span class="error-message" th:if="${startDate != null}" th:text="${startDate}"></span>
         </div>
 
         <!-- 出勤時間 -->
@@ -54,14 +51,14 @@
 
         <!-- ボタン配置 -->
         <div>
-			<!-- 登録ボタン（form送信） -->
-			                        <button type="submit" class="btn" 
-										th:onclick="|location.href='@{/home/attendance/{userId}(userId=${userId})}'|">登録</button>
+            <!-- 登録ボタン（form送信） -->
+            <button type="submit" class="btn"
+                th:onclick="|location.href='@{/home/attendance/{userId}(userId=${userId})}'|">登録</button>
 
-			    <!-- 戻るボタン（リンク） -->
-			    <a th:href="@{/home/attendance/{userId}(userId=${userId})}" class="btn">戻る</a>
-            </a>
+            <!-- 戻るボタン（リンク） -->
+            <a th:href="@{/home/attendance/{userId}(userId=${userId})}" class="btn">戻る</a>
         </div>
     </form>
 </body>
+
 </html>

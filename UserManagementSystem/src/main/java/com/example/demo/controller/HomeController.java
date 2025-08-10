@@ -11,6 +11,14 @@ import com.example.demo.security.LoginUserDetails;
 
 @Controller
 public class HomeController {
+
+	/**
+	 * ホーム画面
+	 * 
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/home/{userId}")
 	public String home(Model model, @AuthenticationPrincipal LoginUserDetails userDetails) {
 		LoginUser user = userDetails.getLoginUser();
@@ -18,26 +26,30 @@ public class HomeController {
 		return "home"; // ホーム画面に遷移
 	}
 
-	// 勤怠ページ
+	/**
+	 * 勤怠ページ
+	 * 
+	 * @param userId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/home/attendance/{userId}")
 	public String attendancePage(@PathVariable("userId") String userId, Model model) {
 		model.addAttribute("userId", userId);
 		return "attendance"; // attendance.htmlに遷移
 	}
 
-	// ユーザー情報ページ
+	/**
+	 * ユーザー情報ページ
+	 * 
+	 * @param userId
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/home/userDetail/{userId}")
 	public String userDetailPage(@PathVariable("userId") String userId, Model model) {
 		model.addAttribute("userId", userId);
 		return "userDetail"; // userDetail.htmlに遷移
 	}
 
-	// ユーザー一覧ページ
-	//    @GetMapping("/home/userList/{userId}")
-	//    public String userListPage(@PathVariable("userId") String userId, Model model) {
-	//        model.addAttribute("userId", userId);
-	//        return "userList"; // userList.htmlに遷移
-	//    }
-	
-	
-	}
+}

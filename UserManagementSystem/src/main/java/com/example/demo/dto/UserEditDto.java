@@ -39,13 +39,10 @@ public class UserEditDto {
 	//	@Pattern(regexp = "^[a-zA-Z0-9._-]+$",message = "半角で入力してください")
 	private String address; // メールアドレス
 
-	@NotBlank(message = "パスワードを入力してください")
-	@Size(max = 20, message = "60文字以下で入力してください")
-	@Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "半角で入力してください")
 	private String password; // パスワード
 
 	@NotNull(message = "権限を選択してください")
-	private String role; // 権限
+	private Integer role; // 権限
 
 	// 案件情報は複数の可能性を考慮しListで管理
 	private List<UserEditProjectDto> projects = new ArrayList<>();
@@ -71,122 +68,3 @@ public class UserEditDto {
 		}
 	}
 }
-
-//	// ゲッターとセッター
-//
-//	// ユーザーID
-//	public Integer getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(Integer userId) {
-//		this.userId = userId;
-//	}
-//
-//	// 氏名
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//
-//	// フリガナ
-//	public String getKana() {
-//		return kana;
-//	}
-//
-//	public void setKana(String kana) {
-//		this.kana = kana;
-//	}
-//
-//	// メールアドレス
-//	public String getAddress() {
-//		return address;
-//	}
-//
-//	public void setAddress(String address) {
-//		this.address = address;
-//	}
-//
-//	// パスワード
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-//
-//	// 権限
-//	public String getRole() {
-//		return role;
-//	}
-//
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
-//
-////	//案件ID
-////	public Integer getProjectId() {
-////		return projectId;
-////	}
-////
-////	public void setProjectId(Integer projectId) {
-////		this.projectId = projectId;
-////	}
-////
-////	//案件名
-////	public String getProjectName() {
-////		return projectName;
-////	}
-////
-////	public void setProjectName(String projectName) {
-////		this.projectName = projectName;
-////	}
-////
-////	//リモート可否
-////	public String getRemoteAvailability() {
-////		return remoteAvailability;
-////	}
-////
-////	public void setRemoteAvailability(String remoteAvailability) {
-////		this.remoteAvailability = remoteAvailability;
-////	}
-////
-////	//稼働場所
-////	public String getWorkLocation() {
-////		return workLocation;
-////	}
-////
-////	public void setWorkLocation(String workLocation) {
-////		this.workLocation = workLocation;
-////	}
-////
-////	//業務内容
-////	public String getJobDescription() {
-////		return jobDescription;
-////	}
-////
-////	public void setJobDescription(String jobDescription) {
-////		this.jobDescription = jobDescription;
-////	}
-////
-////	//使用言語
-////	public String getProgrammingLanguage() {
-////		return programmingLanguage;
-////	}
-////
-////	public void setProgrammingLanguage(String programmingLanguage) {
-////		this.programmingLanguage = programmingLanguage;
-////	}
-////
-////	// 備考
-////	public String getRemarks() {
-////		return remarks;
-////	}
-////
-////	public void setRemarks(String remarks) {
-////		this.remarks = remarks;
-////	}

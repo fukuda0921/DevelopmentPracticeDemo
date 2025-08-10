@@ -20,15 +20,14 @@ import com.example.demo.service.GoingRegisterService;
 public class GoingRegisterController {
 
 	/** 出勤登録画面Service */
-    private final GoingRegisterService goingRegisterService;
+	private final GoingRegisterService goingRegisterService;
 
-    
 	/**
 	 * コンストラクタインジェクション
 	 * 
 	 * @param goingRegisterService 出勤登録画面Service
 	 */
-	public GoingRegisterController (GoingRegisterService goingRegisterService) {
+	public GoingRegisterController(GoingRegisterService goingRegisterService) {
 		this.goingRegisterService = goingRegisterService;
 	}
 

@@ -32,4 +32,7 @@ public class GoingRegisterEntity {
 
     @Column(length = 100)
     private String remarks; // 備考
+    
+    @Column(nullable = false)
+    private Integer deleteFlag;
 }

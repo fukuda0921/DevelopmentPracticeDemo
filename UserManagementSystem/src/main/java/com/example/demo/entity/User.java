@@ -2,12 +2,13 @@ package com.example.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "user_tbl")
 public class User {
 
@@ -28,38 +29,5 @@ public class User {
 	private String password;
 
 	@Column(name = "role")
-	private String role;
-
-	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-	private UserPermission userPermission;
-
-	// --- Getter ---
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getKana() {
-		return kana;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public UserPermission getUserPermission() {
-		return userPermission;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
+	private Integer  role;
 }

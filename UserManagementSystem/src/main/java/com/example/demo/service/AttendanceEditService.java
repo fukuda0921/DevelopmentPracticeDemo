@@ -12,10 +12,10 @@ import com.example.demo.entity.AttendanceEditEntity;
 
 @Service
 public class AttendanceEditService {
-	
+
 	/** 勤怠編集Mapper */
 	private final AttendanceEditMapper attendanceEditMapper;
-	
+
 	/**
 	 * コンストラクタインジェクション
 	 * 
@@ -25,7 +25,6 @@ public class AttendanceEditService {
 		this.attendanceEditMapper = attendanceEditMapper;
 	}
 
-
 	/**
 	 * 勤怠IDで勤怠情報を取得
 	 * 
@@ -34,12 +33,12 @@ public class AttendanceEditService {
 	 */
 	public AttendanceEditDto findByAttendanceId(Integer attendanceId) {
 		AttendanceEditEntity entity = attendanceEditMapper.findByAttendanceId(attendanceId);
-		
+
 		// 結果がnullだった場合、エラーをスロー
-        if (entity == null) {
-        	throw new RuntimeException(String.format(ErrorMessage.ATTENDANCE_NOT_FOUND, attendanceId));
-        }
-		
+		if (entity == null) {
+			throw new RuntimeException(String.format(ErrorMessage.ATTENDANCE_NOT_FOUND, attendanceId));
+		}
+
 		return new AttendanceEditDto(entity);
 	}
 
@@ -83,14 +82,14 @@ public class AttendanceEditService {
 	 * @param attendanceId
 	 */
 	public void deleteAttendance(Integer attendanceId) {
-		int deletedRows  = attendanceEditMapper.deleteByAttendanceId(attendanceId);
-		
+		int deletedRows = attendanceEditMapper.deleteByAttendanceId(attendanceId);
+
 		if (deletedRows == 0) { // 0行削除された場合（見つからなかった場合）
-	        throw new RuntimeException(String.format(ErrorMessage.ATTENDANCE_NOT_FOUND, attendanceId));
-	    }
-		
+			throw new RuntimeException(String.format(ErrorMessage.ATTENDANCE_NOT_FOUND, attendanceId));
+		}
+
 	}
-	
+
 	/**
 	 * 稼働時間を計算するメソッド
 	 * 

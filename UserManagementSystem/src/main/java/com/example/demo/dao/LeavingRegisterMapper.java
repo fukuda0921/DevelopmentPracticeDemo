@@ -10,7 +10,7 @@ import com.example.demo.entity.LeavingRegisterEntity;
 
 @Mapper
 public interface LeavingRegisterMapper {
-	
+
 	/**
 	 * 指定されたユーザーIDと日付に対応する出勤データが存在するかをチェック
 	 * 
@@ -28,18 +28,18 @@ public interface LeavingRegisterMapper {
 	 * @return
 	 */
 	boolean existsByUserIdAndEndDate(@Param("userId") Integer userId, @Param("endDate") LocalDate endDate);
-	
+
 	/**
-     * 指定されたユーザーIDの最新の出勤レコードを取得します。
-     * @param userId 
-     * @return 最新の出勤レコード:存在しない場合はOptional.empty()
-     */
-    Optional<LeavingRegisterEntity> findTopByUserIdOrderByStartDateDesc(@Param("userId") Integer userId, @Param("endDate") LocalDate endDate); 
-    
-    
-    /**
-     * 勤怠レコードを更新します。
-     * @param entity 
-     */
-    void updateAttendance(LeavingRegisterEntity attendanceEntity); 
+	 * 指定されたユーザーIDの最新の出勤レコードを取得します。
+	 * @param userId 
+	 * @return 最新の出勤レコード:存在しない場合はOptional.empty()
+	 */
+	Optional<LeavingRegisterEntity> findTopByUserIdOrderByStartDateDesc(@Param("userId") Integer userId,
+			@Param("endDate") LocalDate endDate);
+
+	/**
+	 * 勤怠レコードを更新します。
+	 * @param entity 
+	 */
+	void updateAttendance(LeavingRegisterEntity attendanceEntity);
 }

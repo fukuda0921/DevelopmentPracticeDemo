@@ -45,8 +45,9 @@ public class GoingRegisterService {
 		entity.setStartDate(form.getStartDate());
 		entity.setStartTime(form.getStartTime());
 		entity.setRemarks(form.getRemarks());
+		entity.setDeleteFlag(0);//deleteFlagを0でセット
 
-		goingRegisterMapper.saveAttendance(entity);
+		goingRegisterMapper.addAttendance(entity);
 	}
 
 }

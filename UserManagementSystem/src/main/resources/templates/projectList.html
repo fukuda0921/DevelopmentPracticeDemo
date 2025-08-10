@@ -1,55 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>案件一覧</title>
-        <link th:href="@{css/projectList.css}" rel="stylesheet">
-    </head>
-    <body>
-        <div id="wrapper">
-            <header class="header">
-                <h1>案件一覧</h1>
-            </header>
-    
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>案件ID</th>
-                        <th>ユーザーID</th>
-                        <th>案件名</th>
-                        <th>リモート可否</th>
-                        <th>稼働場所</th>
-                        <th>業務内容</th>
-                        <th>使用言語</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="project: ${projectList}" th:object="${project}">
-                        <td th:text="*{projectId}"></td> 
-                        <td th:text="*{userId}"></td> 
-                        <td th:text="*{projectName}"></td> 
-                        <td th:text="*{remoteAvailability}"></td>
-                        <td th:text="*{workLocation}"></td> 
-                        <td th:text="*{jobDescription}"></td>
-                        <td th:text="*{programmingLanguage}"></td> 
-                        <td th:text="*{remarks}"></td>
-                    </tr>
-                </tbody>
-            </table>
-              
-    <!-- 戻るボタン -->
-    <div>
-		<!-- 戻るボタン（リンク） -->
-		<a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn">戻る</a>
-    </div>   
-            <footer class="footer">
-            </footer>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件一覧</title>
+    <link th:href="@{css/projectList.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <header class="header">
+            <h1>案件一覧</h1>
+        </header>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>案件ID</th>
+                    <th>ユーザーID</th>
+                    <th>案件名</th>
+                    <th>リモート可否</th>
+                    <th>稼働場所</th>
+                    <th>業務内容</th>
+                    <th>使用言語</th>
+                    <th>備考</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project: ${projectList}" th:object="${project}">
+                    <td th:text="*{projectId}"></td>
+                    <td th:text="*{userId}"></td>
+                    <td th:text="*{projectName}"></td>
+                    <td th:text="*{remoteAvailability}"></td>
+                    <td th:text="*{workLocation}"></td>
+                    <td th:text="*{jobDescription}"></td>
+                    <td th:text="*{programmingLanguage}"></td>
+                    <td th:text="*{remarks}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 戻るボタン -->
+        <div>
+            <!-- 戻るボタン（リンク） -->
+            <a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn">ユーザー詳細画面へ戻る</a></br>
+			<a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn">ユーザー一覧画面へ戻る</a>
         </div>
-    </body>
-    
-    </html>
-    
+        <footer class="footer">
+        </footer>
+    </div>
+</body>
+
+</html>

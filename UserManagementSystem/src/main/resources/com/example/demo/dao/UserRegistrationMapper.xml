@@ -6,19 +6,22 @@
 <mapper namespace="com.example.demo.dao.UserRegistrationMapper">
 
      <!-- ユーザー情報を登録 -->
-     <insert id="insertUser" parameterType="com.example.demo.entity.UserRegistrationEntity"
-	useGeneratedKeys="true" keyProperty="userId">
+     <insert id="insertUser" parameterType="com.example.demo.entity.UserRegistrationEntity">
 	
 	INSERT INTO user_tbl (
 		name,
 		kana,
 		address,
-		password
+		password,
+		role,
+		delete_flag
 	) VALUES (
 		#{name},
 		#{kana},
 		#{address},
-		#{password}
+		#{password},
+		#{role},
+		#{deleteFlag}
 	)
      </insert>
 

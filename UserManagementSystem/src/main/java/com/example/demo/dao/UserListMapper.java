@@ -8,12 +8,11 @@ import com.example.demo.entity.UserListEntity;
 
 @Mapper
 public interface UserListMapper {
-	
+
 	/**
-     * 全てのユーザーリストを取得※ロールはJOINして取得
-     * @return ユーザー情報のリスト
-     */
-    List<UserListEntity> findAll();
-    
+	 * 全てのユーザーリストを取得※ロールはJOINして取得
+	 * @return ユーザー情報のリスト
+	 */
+	List<UserListEntity> findAll();
 
 }

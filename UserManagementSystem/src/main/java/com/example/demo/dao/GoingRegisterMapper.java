@@ -9,7 +9,7 @@ import com.example.demo.entity.GoingRegisterEntity;
 
 @Mapper
 public interface GoingRegisterMapper {
-	
+
 	/**
 	 * 当日出勤情報の存在チェック
 	 * @param userId
@@ -17,12 +17,12 @@ public interface GoingRegisterMapper {
 	 * @return
 	 */
 	boolean existsAttendance(@Param("userId") Integer userId, @Param("startDate") LocalDate startDate);
-	
+
 	/**
 	 * 出勤情報を登録
 	 * @param entity
 	 * @return
 	 */
-	void saveAttendance(GoingRegisterEntity entity);
+	void addAttendance(GoingRegisterEntity entity);
 
 }

@@ -27,18 +27,17 @@ public class UserEditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-
     private String name;
     private String kana;
     private String address;
     private String password;
-    private String role;
+    private Integer role;
 	
     // UserEditProjectEntityのリスト
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserEditProjectEntity> projects = new ArrayList<>();
     
- 	public void setRole(String role) {
+ 	public void setRole(Integer role) {
  		this.role = role;
  	}
 

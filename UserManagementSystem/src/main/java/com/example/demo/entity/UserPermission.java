@@ -15,10 +15,10 @@ import lombok.Data;
 public class UserPermission {
 	
 	@Id
-    @Column(name = "user_id")
+    @Column(name = "role")
 	private Integer userId;
 	
-	 @Column(name = "role")
+	 @Column(name = "name")
 	    private String role;
 	 
 	 @OneToOne

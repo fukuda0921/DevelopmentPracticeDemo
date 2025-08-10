@@ -38,12 +38,14 @@
             attendance_id = #{attendanceId}
     </update>
     
-     <!-- 勤怠IDに紐づく勤怠情報を削除 -->
-    <delete id="deleteByAttendanceId" parameterType="int">
-        DELETE FROM
-            attendance_tbl
-        WHERE
-            attendance_id = #{attendanceId}
-    </delete>
+     <!-- 勤怠IDに紐づく勤怠情報を削除(deleteflagを1に更新) -->
+    <update id="deleteByAttendanceId" parameterType="int">
+		UPDATE
+			attendance_tbl
+		SET
+			delete_flag = 1
+		WHERE
+			attendance_id = #{attendanceId}
+    </update>
 	
 </mapper>

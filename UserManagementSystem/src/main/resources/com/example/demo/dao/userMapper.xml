@@ -3,23 +3,21 @@
        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.dao.UserListMapper">
+<mapper namespace="com.example.demo.dao.UserMapper">
 
-      <!-- ユーザー情報と権限を全取得する  -->
-     <select id="findAll" resultType="com.example.demo.entity.UserListEntity">
-       SELECT
+      <!-- ユーザー情報取得する  -->
+      <select id="findByUserId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.User">
+        SELECT
             user_id,
             name,
             kana,
             address,
             password,
-            role 
+            role
         FROM
-            user_tbl 
+            user_tbl
         WHERE
-       		delete_flag =0
-        ORDER BY
-            user_id
+            user_id = #{userId}
     </select>
 
 </mapper>

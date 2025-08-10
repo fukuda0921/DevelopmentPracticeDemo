@@ -44,9 +44,9 @@ public class UserRegistrationController {
 		model.addAttribute("userRegistrationDto", new UserRegistrationDto());
 		
 		 //権限の選択肢
-	    Map<String, String> roleOptions = new LinkedHashMap<String, String>();
-	    roleOptions.put("1", "管理者");
-	    roleOptions.put("2", "一般");
+	    Map<Integer, String> roleOptions = new LinkedHashMap<Integer, String>();
+	    roleOptions.put(1, "管理者");
+	    roleOptions.put(2, "一般");
 
 	    model.addAttribute("roleOptions", roleOptions);
 		return "userRegistration";
@@ -70,9 +70,9 @@ public class UserRegistrationController {
 		if (result.hasErrors()) {
 			model.addAttribute("userId", userId);
 
-			Map<String, String> roleOptions = new LinkedHashMap<String, String>();
-			roleOptions.put("1", "管理者");
-			roleOptions.put("2", "一般");
+			Map<Integer, String> roleOptions = new LinkedHashMap<Integer, String>();
+		    roleOptions.put(1, "管理者");
+		    roleOptions.put(2, "一般");
 
 			model.addAttribute("roleOptions", roleOptions);
 			return "userRegistration";

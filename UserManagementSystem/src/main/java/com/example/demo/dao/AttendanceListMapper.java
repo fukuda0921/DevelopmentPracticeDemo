@@ -9,12 +9,12 @@ import com.example.demo.entity.AttendanceListEntity;
 
 @Mapper
 public interface AttendanceListMapper {
-	
+
 	/**
-     * 指定されたユーザーIDの全ての勤怠情報を取得
-     * @param userId ユーザーID
-     * @return 勤怠情報のリスト
-     */
-    List<AttendanceListEntity> findByUserId(@Param("userId") Integer userId);
+	 * 指定されたユーザーIDの全ての勤怠情報を取得
+	 * @param userId ユーザーID
+	 * @return 勤怠情報のリスト
+	 */
+	List<AttendanceListEntity> findByUserId(@Param("userId") Integer userId);
 
 }

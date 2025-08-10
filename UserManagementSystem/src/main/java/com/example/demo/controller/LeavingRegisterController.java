@@ -21,18 +21,17 @@ import com.example.demo.service.LeavingRegisterService;
 public class LeavingRegisterController {
 
 	/** 退勤登録Service */
-	private final  LeavingRegisterService leavingRegisterService;
-	
+	private final LeavingRegisterService leavingRegisterService;
+
 	/**
 	 * コンストラクタインジェクション
 	 * 
 	 * @param leavingRegisterService 退勤登録Service
 	 */
-	public LeavingRegisterController (LeavingRegisterService leavingRegisterService) {
+	public LeavingRegisterController(LeavingRegisterService leavingRegisterService) {
 		this.leavingRegisterService = leavingRegisterService;
 	}
 
-	
 	/**
 	 * 退勤登録画面表示
 	 * 
@@ -62,11 +61,11 @@ public class LeavingRegisterController {
 
 		// 入力された退勤日が出勤日と一致しない場合のエラー（業務チェック）
 		// DBから最新の出勤日を取得
-//		LocalDate latestStartDate = leavingRegisterService.getLatestStartDateByUserId(form.getUserId());
+		//		LocalDate latestStartDate = leavingRegisterService.getLatestStartDateByUserId(form.getUserId());
 
 		// 入力された退勤日と比較
 		if (form.getEndDate() == null || !leavingRegisterService.existsStartDateForUser(userId, form.getEndDate())) {
-		    result.rejectValue("endDate", null, ErrorMessage.NOT_MUCH_WORK_DATE);
+			result.rejectValue("endDate", null, ErrorMessage.NOT_MUCH_WORK_DATE);
 		}
 
 		// 入力された退勤情報が登録済みの場合（業務チェック）
@@ -83,18 +82,17 @@ public class LeavingRegisterController {
 		// --- ここから最新の出勤レコード取得して退勤時間更新処理 ---
 
 		// 最新の出勤レコード取得
-		Optional<LeavingRegisterEntity> latestAttendanceOpt = leavingRegisterService.getLatestAttendanceByUserId(userId,form.getEndDate());
+		Optional<LeavingRegisterEntity> latestAttendanceOpt = leavingRegisterService.getLatestAttendanceByUserId(userId,
+				form.getEndDate());
 
 		if (latestAttendanceOpt.isPresent()) {
 			LeavingRegisterEntity attendance = latestAttendanceOpt.get();
 
 			// 退勤日・退勤時間を現在日時にセット（必要に応じてフォーム値に変えてもOK）
 			attendance.setEndDate(form.getEndDate());
-		    attendance.setEndTime(form.getEndTime());
+			attendance.setEndTime(form.getEndTime());
 			// 休憩時間はフォームから受け取ってセット（もしあれば）
 			attendance.setBreakTime(form.getBreakTime());
-
-			// 稼働時間はDB更新のSQLなどで計算する想定なのでここではセットしない
 
 			// 勤怠情報を更新
 			leavingRegisterService.updateAttendance(attendance);

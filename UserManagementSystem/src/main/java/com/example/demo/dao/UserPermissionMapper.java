@@ -6,12 +6,12 @@ import com.example.demo.entity.UserPermission;
 
 @Mapper
 public interface UserPermissionMapper {
-	
+
 	/**
-     * 新規ユーザー権限情報登録
-     * @param entity ユーザー権限エンティティ
-     * @return 挿入されたレコードの数
-     */
-    int insertUserPermission(UserPermission entity);
+	 * 新規ユーザー権限情報登録
+	 * @param entity ユーザー権限エンティティ
+	 * @return 挿入されたレコードの数
+	 */
+	int insertUserPermission(UserPermission entity);
 
 }

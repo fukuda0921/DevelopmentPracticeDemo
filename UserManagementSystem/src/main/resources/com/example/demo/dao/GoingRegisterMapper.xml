@@ -7,26 +7,29 @@
 
 <!-- 当日出勤データチェック -->
 	<select id="existsAttendance" resultType="boolean">
-       SELECT EXISTS (
-            SELECT 1
-        FROM attendance_tbl
-        WHERE user_id = #{userId} AND start_date = #{startDate}
-        )
+       SELECT COUNT(*)
+        FROM 
+        	attendance_tbl
+        WHERE 
+        	user_id = #{userId} 
+        AND 
+        	start_date = #{startDate}
     </select>
     
     <!-- 出勤情報登録 -->
-    <insert id="saveAttendance" parameterType="com.example.demo.dao.GoingRegisterMapper">
+    <insert id="addAttendance" parameterType="com.example.demo.dao.GoingRegisterMapper">
 	INSERT INTO attendance_tbl (
-	user_id,
-	start_date,
-	start_time,
-	remarks
+		user_id,
+		start_date,
+		start_time,
+		remarks,
+		delete_flag
 	) VALUES (
-	#{userId},
-	#{startDate},
-	#{startTime},
-	#{remarks}
+		#{userId},
+		#{startDate},
+		#{startTime},
+		#{remarks},
+		#{deleteFlag}
 	)
     </insert>
-	
 </mapper>
