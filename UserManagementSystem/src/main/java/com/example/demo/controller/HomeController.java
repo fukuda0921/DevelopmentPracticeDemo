@@ -4,7 +4,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.security.LoginUser;
 import com.example.demo.security.LoginUserDetails;
@@ -25,31 +24,4 @@ public class HomeController {
 		model.addAttribute("userId", user.getUserId());
 		return "home"; // ホーム画面に遷移
 	}
-
-	/**
-	 * 勤怠ページ
-	 * 
-	 * @param userId
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/home/attendance/{userId}")
-	public String attendancePage(@PathVariable("userId") String userId, Model model) {
-		model.addAttribute("userId", userId);
-		return "attendance"; // attendance.htmlに遷移
-	}
-
-	/**
-	 * ユーザー情報ページ
-	 * 
-	 * @param userId
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/home/userDetail/{userId}")
-	public String userDetailPage(@PathVariable("userId") String userId, Model model) {
-		model.addAttribute("userId", userId);
-		return "userDetail"; // userDetail.htmlに遷移
-	}
-
 }

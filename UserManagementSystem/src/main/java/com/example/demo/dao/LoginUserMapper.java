@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.entity.User;
+import com.example.demo.entity.UserEntity;
 
 @Mapper
-public interface UserMapper {
+public interface LoginUserMapper {
 
 	/**
 	 * user_id を使って user_tbl からユーザー情報を取得します。
@@ -15,6 +15,6 @@ public interface UserMapper {
 	 * @param userId 検索するユーザーID (Integer型)
 	 * @return 該当するユーザー情報を含むOptional
 	 */
-	Optional<User> findByUserId(Integer userId);
+	Optional<UserEntity> findByUserId(Integer userId);
 
 }

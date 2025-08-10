@@ -1,8 +1,5 @@
 package com.example.demo.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import com.example.demo.entity.UserEditEntity;
-import com.example.demo.entity.UserEditProjectEntity;
 
 import lombok.Data;
 import lombok.Getter;
@@ -43,9 +39,6 @@ public class UserEditDto {
 
 	@NotNull(message = "権限を選択してください")
 	private Integer role; // 権限
-
-	// 案件情報は複数の可能性を考慮しListで管理
-	private List<UserEditProjectDto> projects = new ArrayList<>();
 	
 	 public UserEditDto() {
 	        
@@ -59,12 +52,5 @@ public class UserEditDto {
 		this.address = entity.getAddress();
 		this.password = entity.getPassword();
 		this.role = entity.getRole();
-		
-		// ProjectEntityリストからDTOリストへ変換
-		if (entity.getProjects() != null) {
-			for (UserEditProjectEntity p : entity.getProjects()) {
-				this.projects.add(new UserEditProjectDto(p));
-			}
-		}
 	}
 }

@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.UserMapper;
-import com.example.demo.entity.User;
+import com.example.demo.dao.LoginUserMapper;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.security.LoginUser;
 import com.example.demo.security.LoginUserDetails;
 
@@ -19,9 +19,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LoginUserService implements UserDetailsService {
-	
-	private final UserMapper userMapper;
-	
+
+	private final LoginUserMapper loginUserMapper;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -33,17 +33,17 @@ public class LoginUserService implements UserDetailsService {
 			throw new UsernameNotFoundException("ユーザーIDの形式が不正です: " + username);
 		}
 
-		Optional<User> userOptional = userMapper.findByUserId(userId);
-		User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりません: " + username));
+		Optional<UserEntity> userOptional = loginUserMapper.findByUserId(userId);
+		UserEntity userEntity = userOptional.orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりません: " + username));
 
 		// User オブジェクトから LoginUser を生成
 		// user.getRole() は Integer を返すので、String に変換してリストに入れる
-		String roleString = user.getRole() != null ? String.valueOf(user.getRole()) : "UNKNOWN_ROLE";
+		String roleString = userEntity.getRole() != null ? String.valueOf(userEntity.getRole()) : "UNKNOWN_ROLE";
 		List<String> roles = Arrays.asList(roleString);
 
 		LoginUser loginUser = new LoginUser(
-				user.getUserId(), // UserからUserIdを取得
-				user.getPassword(), // UserからPasswordを取得
+				userEntity.getUserId(), // UserからUserIdを取得
+				userEntity.getPassword(), // UserからPasswordを取得
 				roles // 変換したロールリスト
 		);
 

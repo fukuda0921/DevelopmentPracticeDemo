@@ -18,19 +18,19 @@ import com.example.demo.service.UserRegistrationService;
 
 @Controller
 public class UserRegistrationController {
-	
+
 	/** ユーザー登録Service */
 	private final UserRegistrationService userRegistrationService;
-	
+
 	/**
 	 * コンストラクタインジェクション
 	 * 
 	 * @param userRegistrationService
 	 */
-	public UserRegistrationController(UserRegistrationService userRegistrationService){
+	public UserRegistrationController(UserRegistrationService userRegistrationService) {
 		this.userRegistrationService = userRegistrationService;
 	}
-	
+
 	/**
 	 * ユーザー登録画面表示
 	 * 
@@ -42,16 +42,16 @@ public class UserRegistrationController {
 	public String userRegistration(@PathVariable String userId, Model model) {
 		model.addAttribute("userId", userId); // ← 画面に渡す
 		model.addAttribute("userRegistrationDto", new UserRegistrationDto());
-		
-		 //権限の選択肢
-	    Map<Integer, String> roleOptions = new LinkedHashMap<Integer, String>();
-	    roleOptions.put(1, "管理者");
-	    roleOptions.put(2, "一般");
 
-	    model.addAttribute("roleOptions", roleOptions);
+		//権限の選択肢
+		Map<Integer, String> roleOptions = new LinkedHashMap<Integer, String>();
+		roleOptions.put(1, "管理者");
+		roleOptions.put(2, "一般");
+
+		model.addAttribute("roleOptions", roleOptions);
 		return "userRegistration";
 	}
-	
+
 	/**
 	 * ユーザー情報新規登録
 	 * 
@@ -71,8 +71,8 @@ public class UserRegistrationController {
 			model.addAttribute("userId", userId);
 
 			Map<Integer, String> roleOptions = new LinkedHashMap<Integer, String>();
-		    roleOptions.put(1, "管理者");
-		    roleOptions.put(2, "一般");
+			roleOptions.put(1, "管理者");
+			roleOptions.put(2, "一般");
 
 			model.addAttribute("roleOptions", roleOptions);
 			return "userRegistration";
@@ -82,4 +82,3 @@ public class UserRegistrationController {
 		}
 	}
 }
-

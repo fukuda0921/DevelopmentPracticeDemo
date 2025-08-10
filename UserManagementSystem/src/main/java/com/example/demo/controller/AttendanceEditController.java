@@ -40,7 +40,7 @@ public class AttendanceEditController {
 	 * @return
 	 */
 	@GetMapping("/attendanceEdit/{userId}/{attendanceId}")
-	public String AttendanceEdit(@PathVariable Integer userId, @PathVariable Integer attendanceId,Model model) {
+	public String AttendanceEdit(@PathVariable Integer userId, @PathVariable Integer attendanceId, Model model) {
 
 		// 編集対象：1件のみ取得
 		AttendanceEditDto attendanceEditDto = attendanceEditService.findByAttendanceId(attendanceId);
@@ -68,12 +68,12 @@ public class AttendanceEditController {
 			@ModelAttribute("AttendanceEditDto") AttendanceEditDto attendanceEditDto,
 			BindingResult bindingResult,
 			Model model) {
-		
+
 		if ("delete".equals(action)) {
-	        attendanceEditService.deleteAttendance(attendanceId);
-	        return "redirect:/home/attendance/attendanceList/" + userId;
-	    }
-		
+			attendanceEditService.deleteAttendance(attendanceId);
+			return "redirect:/home/attendance/attendanceList/" + userId;
+		}
+
 		if (bindingResult.hasErrors()) {
 			return "attendanceEdit"; // バリデーションエラー時はフォームに戻す
 		}
@@ -96,7 +96,7 @@ public class AttendanceEditController {
 		// 更新後の画面へリダイレクト（詳細または一覧）
 		return "redirect:/home/attendance/attendanceList/{userId}";
 	}
-	
+
 	/**
 	 * 勤怠情報を削除
 	 * 
@@ -106,12 +106,12 @@ public class AttendanceEditController {
 	 */
 	@PostMapping("/attendanceEdit/{userId}/{attendanceId}/delete")
 	public String deleteAttendance(@PathVariable Integer userId,
-	                               @PathVariable Integer attendanceId) {
+			@PathVariable Integer attendanceId) {
 
-	    attendanceEditService.deleteAttendance(attendanceId);
+		attendanceEditService.deleteAttendance(attendanceId);
 
-	    // 削除後のリダイレクト先
-	    return "redirect:/home/attendance/attendanceList/{userId}";
+		// 削除後のリダイレクト先
+		return "redirect:/home/attendance/attendanceList/{userId}";
 	}
 
 }
