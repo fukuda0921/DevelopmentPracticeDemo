@@ -5,59 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザーリスト</title>
-    <link th:href="@{css/userList.css}" rel="stylesheet">
+    <link th:href="@{/css/userList.css}" rel="stylesheet">
 </head>
 
 <body>
-    <h2>ユーザー一覧</h2>
+    <div id="wrapper">
+        <header class="header">
+            <h1>ユーザー一覧</h1>
+        </header>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ユーザーID</th>
-                <th>氏名</th>
-                <th>フリガナ</th>
-                <th>メールアドレス</th>
-                <th>権限</th>
-                <th>詳細</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="user : ${userList}">
-                <td th:text="${user.userId}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.kana}"></td>
-                <td th:text="${user.address}"></td>
-                <td th:text="${user.role == '1' ? '管理者' : '一般'}"></td>
+        <div class="button-group top-buttons" th:if="${isAdmin}">
+            <a th:href="@{/userList/projectRegistration/{userId}(userId=${loginUserId})}" class="btn primary-btn">
+                案件登録
+            </a>
+        </div>
 
-                <td>
-                    <th:block th:if="${isAdmin}">
-                        <a th:href="@{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})}">編集・削除</a><br />
-                        <a th:href="@{/userDetail/projectList/{userId}(userId=${user.userId})}">案件一覧</a><br />
-                        <a th:href="@{/home/attendance/attendanceList/{userId}(userId=${user.userId})}">勤怠一覧</a>
-                    </th:block>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ユーザーID</th>
+                        <th>氏名</th>
+                        <th>フリガナ</th>
+                        <th>メールアドレス</th>
+                        <th>権限</th>
+                        <th>詳細</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.userId}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.kana}"></td>
+                        <td th:text="${user.address}"></td>
+                        <td th:text="${user.role == '1' ? '管理者' : '一般'}"></td>
 
-                    <th:block th:if="${!isAdmin} and ${loginUserId == user.userId}">
-                        <a th:href="@{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})}">ユーザー詳細</a><br />
-                        <a th:href="@{/userDetail/projectList/{userId}(userId=${user.userId})}">案件一覧</a><br />
-                        <a th:href="@{/home/attendance/attendanceList/{userId}(userId=${user.userId})}">勤怠一覧</a>
-                    </th:block>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <td class="action-cell">
+                            <th:block th:if="${isAdmin}">
+                                <button class="action-btn edit-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
+                                    編集・削除
+                                </button>
+                                <button class="action-btn"
+                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId})} + '\';'">
+                                    案件一覧
+                                </button>
+                                <button class="action-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId})} + '\';'">
+                                    勤怠一覧
+                                </button>
+                            </th:block>
 
-    <div th:if="${isAdmin}">
-        <a th:href="@{/userList/projectRegistration/{userId}(userId=${loginUserId})}">
-            案件登録
-        </a>
-        <a th:href="@{/home/{userId}(userId=${loginUserId})}">戻る</a>
+                            <th:block th:if="${!isAdmin} and ${loginUserId == user.userId}">
+                                <button class="action-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
+                                    ユーザー詳細
+                                </button>
+                                <button class="action-btn"
+                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId})} + '\';'">
+                                    案件一覧
+                                </button>
+                                <button class="action-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId})} + '\';'">
+                                    勤怠一覧
+                                </button>
+                            </th:block>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-group bottom-buttons">
+            <a th:href="@{/home/{userId}(userId=${loginUserId})}" class="btn secondary-btn">戻る</a>
+        </div>
+
+        <footer class="footer">
+            </footer>
     </div>
-
-    <div th:if="${!isAdmin}">
-        <a th:href="@{/home/{userId}(userId=${loginUserId})}">戻る</a>
-    </div>
-
 </body>
 
 </html>

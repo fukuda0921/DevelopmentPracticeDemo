@@ -1,0 +1,305 @@
+/* src/main/resources/static/css/attendanceList.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+#wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+.header {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    padding: 3rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 100;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+}
+
+/* テーブルコンテナ */
+.table-container {
+    flex: 1;
+    padding: 3rem;
+    overflow-x: auto;
+}
+
+/* テーブルスタイル */
+.table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(20px);
+}
+
+.table thead {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.table thead th {
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.table thead th:last-child {
+    border-right: none;
+}
+
+.table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody td {
+    padding: 1.2rem 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 300;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+
+.table tbody td:last-child {
+    border-right: none;
+}
+
+/* アクションセル */
+.action-cell {
+    padding: 1rem !important;
+}
+
+/* 編集ボタン */
+.edit-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.edit-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.edit-btn:active {
+    transform: translateY(0);
+}
+
+/* ボタングループ */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 1.2rem 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    min-width: 200px;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #b0b0b0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+    .table-container {
+        padding: 2rem;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 1rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 2rem 0;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    .table-container {
+        padding: 1rem;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .edit-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table thead th,
+    .table tbody td {
+        padding: 0.6rem 0.3rem;
+        font-size: 0.7rem;
+    }
+    
+    .edit-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* スクロールバーのスタイル */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* テーブルの行ストライプ効果 */
+.table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: transparent;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+}

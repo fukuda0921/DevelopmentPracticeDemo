@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ホーム画面</title>
     <link th:href="@{/css/home.css}" rel="stylesheet">
-
 </head>
 
 <body>
-
     <h1>ホーム画面</h1>
-
-    <a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠ボタン</a><br>
-    <a th:href="@{/home/userDetail/{userId}(userId=${userId})}">ユーザー情報ボタン</a><br>
-    <a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧ボタン</a>
-
-
+    
+    <div class="button-container">
+        <a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠ボタン</a>
+        <a th:href="@{/home/userDetail/{userId}(userId=${userId})}">ユーザー情報ボタン</a>
+        <a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧ボタン</a>
+    </div>
 </body>
 
 </html>

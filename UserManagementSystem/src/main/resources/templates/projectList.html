@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>案件一覧</title>
-    <link th:href="@{css/projectList.css}" rel="stylesheet">
+    <link th:href="@{/css/projectList.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -41,11 +41,9 @@
             </tbody>
         </table>
 
-        <!-- 戻るボタン -->
-        <div>
-            <!-- 戻るボタン（リンク） -->
-            <a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn">ユーザー詳細画面へ戻る</a></br>
-			<a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn">ユーザー一覧画面へ戻る</a>
+        <div class="back-buttons-container">
+            <a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn-custom">ユーザー詳細画面へ戻る</a>
+			<a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn-custom">ユーザー一覧画面へ戻る</a>
         </div>
         <footer class="footer">
         </footer>

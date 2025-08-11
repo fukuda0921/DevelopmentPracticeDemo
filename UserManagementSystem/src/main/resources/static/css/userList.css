@@ -1,0 +1,322 @@
+/* src/main/resources/static/css/userList.css */
+
+/* 全体のリセットと基本スタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a40 100%); /* より深い青紫系のグラデーション */
+    min-height: 100vh;
+    color: #e0e0e0;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrapper {
+    background-color: rgba(255, 255, 255, 0.08); /* ガラスモーフィズムの背景 */
+    border-radius: 16px; /* さらに大きな角丸 */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* ガラスモーフィズムのシャドウ */
+    backdrop-filter: blur(10px); /* 強めのぼかし */
+    -webkit-backdrop-filter: blur(10px); /* Safari対応 */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* 薄いボーダー */
+    padding: 3rem; /* パディング調整 */
+    width: 95%; /* 幅を広げ、レスポンシブ対応 */
+    max-width: 1400px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ヘッダー */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 細くシャープなライン */
+    width: 100%;
+}
+
+.header h1 {
+    color: #ffffff;
+    font-size: 3.5rem; /* より大きく */
+    font-weight: 200; /* さらに細く */
+    letter-spacing: 3px;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* テキストに軽いシャドウ */
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* 位置を調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px; /* 太さ調整 */
+    background: linear-gradient(90deg, transparent, #00bfff, transparent); /* 青のグラデーションライン */
+    border-radius: 1px;
+}
+
+/* 汎用ボタンのグループ */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 2.5rem; /* 間隔調整 */
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.button-group.top-buttons {
+    justify-content: flex-end; /* 右寄せ */
+    margin-bottom: 3rem; /* テーブルとの間隔をさらに開ける */
+}
+
+.button-group.bottom-buttons {
+    margin-top: 3rem; /* テーブルとの間隔をさらに開ける */
+    margin-bottom: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px; /* パディングを増やす */
+    border-radius: 10px; /* 大きな角丸 */
+    text-decoration: none;
+    font-weight: 600; /* 少し太く */
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 180px; /* 最小幅を増やす */
+    cursor: pointer;
+    font-size: 1.1rem; /* 少し大きく */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: none; /* デフォルトのボーダーをなくす */
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, #007bff, #00bfff); /* 青系のグラデーション */
+    color: #ffffff;
+    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+}
+
+.primary-btn:hover {
+    background: linear-gradient(45deg, #0056b3, #0099e6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+}
+
+.secondary-btn {
+    background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    color: #00bfff; /* 明るい青 */
+    border: 1px solid rgba(0, 191, 255, 0.5); /* 明るい青のボーダー */
+    box-shadow: 0 5px 20px rgba(0, 191, 255, 0.2);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(0, 191, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+}
+
+
+/* テーブルコンテナ */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: rgba(255, 255, 255, 0.05); /* 半透明の背景 */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* 薄いボーダー */
+    backdrop-filter: blur(5px); /* テーブルにも軽いぼかし */
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* テーブル */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.table th,
+.table td {
+    padding: 20px 25px; /* パディングを増やす */
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 薄いボーダー */
+    color: #e0e0e0;
+}
+
+.table th {
+    background-color: rgba(255, 255, 255, 0.1); /* ヘッダー背景をさらに透明に */
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem; /* 少し大きく */
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03); /* ホバー時の背景色をさらに控えめに */
+}
+
+/* テーブル内のアクションボタン */
+.action-cell {
+    white-space: nowrap;
+}
+
+.action-btn {
+    background-color: rgba(255, 255, 255, 0.15); /* 半透明の背景 */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 薄いボーダー */
+    padding: 10px 18px;
+    border-radius: 8px; /* 角丸 */
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: all 0.3s ease;
+    margin-right: 10px; /* 間隔を広げる */
+    margin-bottom: 10px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(3px); /* 軽いぼかし */
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.action-btn:last-child {
+    margin-right: 0;
+}
+
+.action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25); /* ホバー時に少し濃く */
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.4); /* 色をさらに薄く */
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* 薄いボーダー */
+    width: 100%;
+}
+
+/* スクロールバーのスタイル（attendanceList.cssから流用） */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 1024px) {
+    #wrapper {
+        padding: 2rem;
+    }
+
+    .header h1 {
+        font-size: 2.8rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 16px 20px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 28px;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+
+    .action-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #wrapper {
+        padding: 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px; /* 幅を固定 */
+        margin: 0 auto; /* 中央寄せ */
+    }
+
+    .table {
+        min-width: 600px;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+
+    .action-btn {
+        padding: 7px 12px;
+        font-size: 0.75rem;
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    #wrapper {
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 0.75rem;
+    }
+
+    .action-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .btn {
+        max-width: 100%;
+    }
+}

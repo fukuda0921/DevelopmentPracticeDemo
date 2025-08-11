@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.demo.dto.UserListDto;
 import com.example.demo.entity.UserListEntity;
 import com.example.demo.security.LoginUserDetails;
 import com.example.demo.service.UserListService;
@@ -43,13 +41,7 @@ public class UserListController {
 		// ユーザーリストを取得
 		List<UserListEntity> userList = userListService.getAllUserList();
 
-		// DTOに変換
-		List<UserListDto> userDtoList = new ArrayList<>();
-		for (UserListEntity userEntity : userList) {
-			userDtoList.add(new UserListDto(userEntity));
-		}
-
-		model.addAttribute("userList", userDtoList); // DTOに変換したリストをModelに追加する
+		model.addAttribute("userList", userList); // DTOに変換したリストをModelに追加する
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("loginUserId", loginUserId);
 

@@ -1,0 +1,153 @@
+/* src/main/resources/static/css/userDetail.css */
+
+/* Base styles from attendanceEnd.css for consistency */
+/* It's good practice to import common styles or ensure they are loaded globally */
+@import url('attendanceEnd.css');
+
+body {
+    background: #1a1a1a; /* Dark background */
+    color: #ffffff;      /* Light text color */
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Page Title Styling */
+h1 {
+    color: #ffffff;
+    font-size: 3.5rem; /* Larger font size for prominence */
+    font-weight: 100; /* Light font weight */
+    letter-spacing: 4px; /* More letter spacing */
+    margin-bottom: 3rem; /* Space below the title */
+    position: relative;
+    padding-bottom: 1rem; /* Padding for the pseudo-element underline */
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; /* Slightly wider underline */
+    height: 2px; /* Thicker underline */
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+}
+
+/* Link/Button Styling */
+.link-group {
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    gap: 1.5rem; /* Space between links */
+    width: 100%;
+    max-width: 400px; /* Max width for the button group */
+    margin-top: 2rem;
+}
+
+.link-group a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem; /* Generous padding for a button-like feel */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+    background: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
+    color: #ffffff; /* White text */
+    text-decoration: none; /* No underline */
+    font-size: 1.1rem; /* Larger font for readability */
+    font-weight: 300; /* Light font weight */
+    letter-spacing: 1.5px; /* Spacing for style */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    backdrop-filter: blur(10px); /* Subtle blur effect */
+    position: relative;
+    overflow: hidden;
+}
+
+.link-group a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.link-group a:hover::before {
+    left: 100%;
+}
+
+.link-group a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Slightly more opaque on hover */
+    border-color: rgba(255, 255, 255, 0.4); /* Brighter border on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+.link-group a:active {
+    transform: translateY(0); /* Press down effect */
+}
+
+/* Specific styling for the "戻る" (Back) button */
+/* If you want it to look different, you can add a separate class,
+   but for monochrome consistency, keeping it similar is good. */
+.link-group .btn {
+    margin-top: 2rem; /* More space above the back button */
+    padding: 1.2rem 2rem; /* Slightly smaller padding for 'Back' */
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent; /* Make back button background transparent */
+    color: #cccccc; /* Slightly darker white for back button */
+}
+
+.link-group .btn:hover {
+    background: rgba(255, 255, 255, 0.05); /* Subtle background on hover */
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
+
+    .link-group {
+        max-width: 300px;
+        gap: 1rem;
+    }
+
+    .link-group a {
+        padding: 1.2rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+    }
+
+    h1::after {
+        width: 60px;
+        height: 1px;
+    }
+
+    .link-group {
+        max-width: 250px;
+        gap: 0.8rem;
+    }
+
+    .link-group a {
+        padding: 1rem 1rem;
+        font-size: 0.9rem;
+    }
+}
