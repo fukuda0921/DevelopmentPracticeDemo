@@ -1,37 +1,60 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.ProjectListMapper;
 import com.example.demo.entity.ProjectListEntity;
-import com.example.demo.repository.ProjectListRepository;
 
 @Service
 public class ProjectListService {
 
-	private final ProjectListRepository projectListRepository;
+	/** 案件一覧Mapper */
+	private final ProjectListMapper projectListMapper;
 
-	@Autowired
-	public ProjectListService(ProjectListRepository projectListRepository) {
-		this.projectListRepository = projectListRepository;
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param projectListRepository
+	 * @param projectListMapper
+	 */
+	public ProjectListService(ProjectListMapper projectListMapper) {
+		this.projectListMapper = projectListMapper;
 	}
 
-	//案件データ取得
-	public List<ProjectListEntity> getAllProjectList() {
-		return projectListRepository.findAll();
-	}
-
-	//	指定したユーザーIDの案件データを取得
+	/**
+	 * 指定したユーザーIDの案件データを取得
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	public List<ProjectListEntity> getProjectListByUserId(Integer userId) {
-		return projectListRepository.findByUserId(userId);
-	}
+		
+		List<ProjectListEntity> list =projectListMapper.findByUserId(userId);
+		
+		for (ProjectListEntity project : list) {
+	        project.setRemoteAvailabilityText(convertRemoteAvailability(project.getRemoteAvailability()));
+	    }
 
-	//	案件データを ID で取得
-	public Optional<ProjectListEntity> getProjectListById(Integer id) {
-		return projectListRepository.findById(id);
+	    return list;
+	}
+	
+	/**
+	 * 変換処理
+	 * 
+	 * @param code
+	 * @return
+	 */
+	private String convertRemoteAvailability(String code) {
+	    if (code == null) return "未設定";
+
+	    switch (code) {
+	        case "1": return "フルリモート";
+	        case "2": return "リモート併用";
+	        case "3": return "常駐";
+	        default: return "未設定";
+	    }
 	}
 
 }

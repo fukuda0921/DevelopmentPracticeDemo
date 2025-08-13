@@ -36,7 +36,6 @@ public class UserSecurityConfig {
 	}
 	
 	 //フォームの値と比較するDBから取得したパスワードは暗号化されているのでフォームの値も暗号化するために利用
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
@@ -50,21 +49,11 @@ public class UserSecurityConfig {
                 		.anyRequest().authenticated() // その他のページには認証が必要
                 		)
         .formLogin(formLogin -> formLogin
+        		.loginPage("/login")
                 .permitAll() // ログインページを許可
-//                .defaultSuccessUrl("/home", true) // ログイン成功後の遷移先
                 .successHandler(successHandler) 
                 .failureUrl("/login?error") // ログイン失敗時の遷移先
             );
-                
-//	        
-	        
-//        ログアウトについての記述をするか否か
-//	        .logout(logout -> logout
-//	            .logoutUrl("/logout")
-//	            .logoutSuccessUrl("/afterLogout.html")
-//	            .invalidateHttpSession(true)
-//	        );
-        
 
 	    return http.build();
 	}

@@ -2,14 +2,15 @@ package com.example.demo.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.UserPermission;
-import com.example.demo.repository.UserPermissionRepository;
+import com.example.demo.dao.LoginUserMapper;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.security.LoginUser;
 import com.example.demo.security.LoginUserDetails;
 
@@ -18,26 +19,36 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LoginUserService implements UserDetailsService {
-	private final UserPermissionRepository userPermissionRepository;
+
+	private final LoginUserMapper loginUserMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// ログインユーザーIDに基づく権限情報を取得
-		UserPermission permission = userPermissionRepository.findWithUserByUserId(username)
-			.orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりません"));
-		
-		// UserPermission から LoginUser を生成
-		   LoginUser loginUser = new LoginUser(
-			        permission.getUser().getUserId(),  // UserPermission から UserIdを取得
-			        permission.getUser().getPassword(), // UserPermission から Passwordを取得
-			        Arrays.asList(permission.getRole()) // ← String を List<String> に変換
-	);// 役割情報（ロール）を取得
-				// LoginUserDetails にラップして返却
-				return new LoginUserDetails(loginUser);
+
+		// ユーザー名（ここではユーザーIDを想定）をIntegerに変換
+		Integer userId = null;
+		try {
+			userId = Integer.valueOf(username); // user_id が String で渡される前提
+		} catch (NumberFormatException e) {
+			throw new UsernameNotFoundException("ユーザーIDの形式が不正です: " + username);
+		}
+
+		Optional<UserEntity> userOptional = loginUserMapper.findByUserId(userId);
+		UserEntity userEntity = userOptional.orElseThrow(() -> new UsernameNotFoundException("ユーザーが見つかりません: " + username));
+
+		// User オブジェクトから LoginUser を生成
+		// user.getRole() は Integer を返すので、String に変換してリストに入れる
+		String roleString = userEntity.getRole() != null ? String.valueOf(userEntity.getRole()) : "UNKNOWN_ROLE";
+		List<String> roles = Arrays.asList(roleString);
+
+		LoginUser loginUser = new LoginUser(
+				userEntity.getUserId(), // UserからUserIdを取得
+				userEntity.getPassword(), // UserからPasswordを取得
+				roles // 変換したロールリスト
+		);
+
+		// LoginUserDetails にラップして返却
+		return new LoginUserDetails(loginUser);
 	}
 
-	// 任意：別用途で全ユーザー取得
-	public List<UserPermission> getAllUsers() {
-		return userPermissionRepository.findAll();
-	}
 }

@@ -1,67 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ユーザー登録</title>
-        <link th:href="@{css/userRegistration.css}" rel="stylesheet">
-    </head>
-    <body>
-        <h1>ユーザー登録</h1>
-    
-        <form th:object="${userRegistrationDto}" th:action="@{/userDetail/userRegistration/{userId}(userId=${userId})}" method="post">
-            <!-- ユーザーIDのhidden（ログインユーザーIDを保持） -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー登録</title>
+    <link th:href="@{/css/userRegistration.css}" rel="stylesheet">
+</head>
+
+<body>
+    <h1>ユーザー登録</h1>
+
+    <div class="form-container">
+        <form th:object="${userRegistrationDto}" th:action="@{/userDetail/userRegistration/{userId}(userId=${userId})}"
+            method="post">
             <input type="hidden" name="userId" th:value="${userId}" />
-    
-               
-            <!-- 氏名 -->
-            <div>
-                <label for="name">氏名:</label>
-                <input type="text" th:field="*{name}" maxlength="20" >
+
+            <div class="form-group">
+                <label for="name" class="form-label">氏名:</label>
+                <input type="text" id="name" th:field="*{name}" maxlength="20" class="form-input">
                 <span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             </div>
-    
-            <!-- フリガナ -->
-            <div>
-                <label for="kana">フリガナ:</label>
-                <input type="text" id="kana" th:field="*{kana}" maxlength="20" >
+
+            <div class="form-group">
+                <label for="kana" class="form-label">フリガナ:</label>
+                <input type="text" id="kana" th:field="*{kana}" maxlength="20" class="form-input">
                 <span class="error-message" th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}"></span>
             </div>
-    
-            <!-- メールアドレス -->
-            <div>
-                <label for="address">メールアドレス:</label>
-				<input type="text" id="email" th:field="*{address}" maxlength="60" >
+
+            <div class="form-group">
+                <label for="address" class="form-label">メールアドレス:</label>
+                <input type="text" id="address" th:field="*{address}" maxlength="60" class="form-input">
                 <span class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
             </div>
-    
-            <!-- パスワード -->
-            <div>
-                <label for="password">パスワード:</label>
-                <input type="password" id="password" th:field="*{password}" maxlength="60" >
+
+            <div class="form-group">
+                <label for="password" class="form-label">パスワード:</label>
+                <input type="password" id="password" th:field="*{password}" maxlength="60" autocomplete="new-password"
+                    class="form-input">
                 <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
             </div>
-			
-			<!-- 権限 -->
-			<div>
-			    <label for="role">権限:</label>
-			    <select id="role" th:field="*{role}" >
-			        <option value="">---選択---</option>
-			        <option value="1">管理者</option>
-			        <option value="2">一般</option>
-			    </select>
-			    <span class="error-message" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
-			</div>
-    
-            <!-- ボタン -->
-            <div>
-                <button type="submit">登録</button>
-				<!-- 戻るボタン（リンク） -->
-				<a th:href="@{/userDetail/{userId}(userId=${userId})}" class="btn">戻る</a>
+
+            <div class="form-group">
+                <label for="role" class="form-label">権限:</label>
+                <select id="role" th:field="*{role}" class="form-select">
+                    <option value="">---選択---</option>
+                    <option value="1">管理者</option>
+                    <option value="2">一般</option>
+                </select>
+                <span class="error-message" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary-custom">登録</button>
+                <a th:href="@{/home/userHome/{userId}(userId=${userId})}" class="btn btn-secondary-custom">戻る</a>
             </div>
         </form>
-    </body>
-    </html>
+    </div>
+</body>
+
+</html>

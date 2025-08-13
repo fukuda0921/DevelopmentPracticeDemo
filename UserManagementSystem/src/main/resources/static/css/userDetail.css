@@ -1,0 +1,206 @@
+/* userDetail.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: radial-gradient(circle at 20% 20%, rgba(192,192,192,0.05), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(128,128,128,0.05), transparent 40%),
+                linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 3px;
+    color: #ffffff;
+    position: relative;
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #b0b0b0, transparent);
+}
+
+.user-info-section {
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    padding: 3rem 4rem; 
+    animation: fadeIn 0.8s ease-out;
+    margin-bottom: 2.5rem;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.user-info-section h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.user-info-table {
+    width: 100%; 
+    border-collapse: collapse;
+}
+
+.user-info-table th,
+.user-info-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 400;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #e0e0e0;
+}
+
+.user-info-table th {
+    width: 35%; 
+    letter-spacing: 1px;
+    opacity: 0.8;
+    user-select: none;
+}
+
+.user-info-table tr:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+    background: linear-gradient(45deg, #666666, #444444);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(128,128,128,0.3);
+    max-width: 300px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #777777, #555555);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192,192,192,0.4);
+}
+
+.btn-back {
+    background-color: rgba(255,255,255,0.05);
+    color: #c0c0c0;
+    border: 1px solid rgba(192,192,192,0.4);
+    box-shadow: none;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-back:hover {
+    background-color: rgba(192,192,192,0.1);
+    color: #ffffff;
+    border-color: rgba(192,192,192,0.6);
+    box-shadow: 0 6px 20px rgba(192,192,192,0.3);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 2rem;
+        max-width: 100%;
+    }
+
+    .header h1 {
+        font-size: 2.4rem;
+    }
+
+    .user-info-section {
+        padding: 2rem 2.5rem;
+    }
+
+    .user-info-table th,
+    .user-info-table td {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .btn {
+        max-width: 100%;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .user-info-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .user-info-table th,
+    .user-info-table td {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}

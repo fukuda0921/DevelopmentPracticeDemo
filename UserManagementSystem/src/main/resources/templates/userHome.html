@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー情報</title>
+    <link th:href="@{/css/userHome.css}" rel="stylesheet">
+</head>
+
+<body>
+    <h1>ユーザー情報</h1>
+
+    <div class="link-group">
+        <a th:href="@{/userDetail/userRegistration/{userId}(userId=${userId})}">ユーザー登録</a>
+        <a th:href="@{/userDetail/projectList/{userId}(userId=${userId}, backUrl='/home/' + ${userId})}">案件一覧</a>
+        <a th:href="@{/home/{userId}(userId=${userId})}" class="btn">戻る</a>
+    </div>
+</body>
+
+</html>

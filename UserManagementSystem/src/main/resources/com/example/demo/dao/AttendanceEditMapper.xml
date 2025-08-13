@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.demo.dao.AttendanceEditMapper">
+
+    <!-- 勤怠IDに紐づく勤怠情報を取得 -->
+    <select id="findByAttendanceId"  parameterType="int" resultType="com.example.demo.entity.AttendanceEditEntity">
+        SELECT
+            attendance_id,
+            user_id,
+            start_date,
+            leaving_date,
+            start_time,
+            leaving_time,
+            operation_time,
+            break_time,
+            remarks
+        FROM
+            attendance_tbl
+        WHERE
+            attendance_id = #{attendanceId}
+    </select>
+    
+    <!-- 勤怠IDに紐づく勤怠情報を更新 -->
+    <update id="update" parameterType="com.example.demo.entity.AttendanceEditEntity">
+        UPDATE attendance_tbl
+        SET
+            start_date = #{startDate},
+            leaving_date = #{leavingDate}, 
+            start_time = #{startTime},
+            leaving_time = #{leavingTime},  
+            operation_time = #{operationTime},
+            break_time = #{breakTime},
+            remarks = #{remarks}
+        WHERE
+            attendance_id = #{attendanceId}
+    </update>
+    
+     <!-- 勤怠IDに紐づく勤怠情報を削除(deleteflagを1に更新) -->
+    <update id="deleteByAttendanceId" parameterType="int">
+		UPDATE
+			attendance_tbl
+		SET
+			delete_flag = 1
+		WHERE
+			attendance_id = #{attendanceId}
+    </update>
+	
+</mapper>

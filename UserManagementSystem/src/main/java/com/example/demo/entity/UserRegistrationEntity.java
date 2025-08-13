@@ -32,7 +32,9 @@ public class UserRegistrationEntity {
     private String password; // パスワード
     
     @Column(nullable = false)
-    private String role; // 権限
+    private Integer role; // 権限
+    
+    @Column(nullable = false)
+	private Integer deleteFlag;
 	
-
 }

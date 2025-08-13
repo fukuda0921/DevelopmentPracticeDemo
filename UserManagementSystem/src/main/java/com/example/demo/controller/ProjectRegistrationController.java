@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +15,20 @@ import com.example.demo.service.ProjectRegistrationService;
 
 @Controller
 public class ProjectRegistrationController {
-
-	@Autowired
-	private ProjectRegistrationService projectRegistrationservice;
+	
+	/** 案件登録Service */
+	private final ProjectRegistrationService projectRegistrationservice;
+	
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param projectRegistrationservice
+	 */
+	public ProjectRegistrationController(ProjectRegistrationService projectRegistrationservice) {
+		this.projectRegistrationservice = projectRegistrationservice;
+		
+	}
+	
 
 	@GetMapping("/userList/projectRegistration/{userId}")
 	public String projectRegistration(@PathVariable String userId, Model model) {

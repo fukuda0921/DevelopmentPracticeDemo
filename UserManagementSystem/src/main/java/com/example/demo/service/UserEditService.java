@@ -1,68 +1,102 @@
 package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.UserEditMapper;
 import com.example.demo.dto.UserEditDto;
 import com.example.demo.entity.UserEditEntity;
-import com.example.demo.repository.UserEditRepository;
+
 @Service
 public class UserEditService {
 
-	@Autowired
-	private UserEditRepository userEditRepository;
+	/** ユーザー編集・削除Mapper */
+	private final UserEditMapper userEditMapper;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	/**
+	 * コンストラクタインジェクション
+	 * 
+	 * @param userEditMapper
+	 * @param passwordEncoder
+	 */
+	public UserEditService(UserEditMapper userEditMapper) {
+		this.userEditMapper = userEditMapper;
 
-	// ユーザー情報取得
-	public UserEditDto findByUserId(Integer targetUserId) {
-		UserEditEntity entity = userEditRepository.findByUserId(targetUserId)
-				.orElseThrow(() -> new RuntimeException("ユーザーが見つかりません（ID: " + targetUserId + "）"));
-		return new UserEditDto(entity);
 	}
 
-	// DTOからEntityへの変換メソッドを追加
+	/**
+	 * ユーザー情報取得
+	 * 
+	 * @param targetUserId
+	 * @return
+	 */
+	public List<UserEditDto> findByUserId(Integer targetUserId) {
+
+		List<UserEditEntity> entityList = userEditMapper.findByUserId(targetUserId);
+
+		//リストが空かチェック
+		if (entityList.isEmpty()) {
+			throw new RuntimeException("ユーザーが見つかりません（ID: " + targetUserId + "）");
+		}
+
+		// List<UserEditEntity>をList<UserEditDto>に変換
+		List<UserEditDto> dtoList = new ArrayList<>();
+		for (UserEditEntity entity : entityList) {
+			dtoList.add(new UserEditDto(entity));
+		}
+
+		return dtoList;
+	}
+
+	/**
+	 * 画面に入力された値を保持しているDTOからEntityへの変換メソッド
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public UserEditEntity convertToEntity(UserEditDto dto) {
 		UserEditEntity entity = new UserEditEntity();
 		entity.setUserId(dto.getUserId());
 		entity.setName(dto.getName());
 		entity.setKana(dto.getKana());
 		entity.setAddress(dto.getAddress());
-		entity.setPassword(dto.getPassword());
 		entity.setRole(dto.getRole());
 		return entity;
 	}
-
-	// ユーザー情報の更新
-	public void updateUser(UserEditEntity userEditEntity) {
-		UserEditEntity entity = userEditRepository.findById(userEditEntity.getUserId())
-				.orElseThrow(() -> new RuntimeException("対象ユーザーが見つかりません（ID: " + userEditEntity.getUserId() + "）"));
-
-		entity.setName(userEditEntity.getName());
-		entity.setKana(userEditEntity.getKana());
-		entity.setAddress(userEditEntity.getAddress());
-		entity.setRole(userEditEntity.getRole());
-
-		// パスワードが指定されていればハッシュ化して更新
-		if (userEditEntity.getPassword() != null && !userEditEntity.getPassword().isEmpty()) {
-			String hashedPassword = passwordEncoder.encode(userEditEntity.getPassword());
-			entity.setPassword(hashedPassword);
-		}
-
-		userEditRepository.save(entity);
-	}
-
-	// ユーザー削除
-	public void deleteUser(Integer userId) {
-		userEditRepository.deleteById(userId);
-	}
 	
-	// 現在のパスワードを取得するメソッド
-	public String getCurrentPassword(Integer userId) {
-	    return userEditRepository.findById(userId)
-	            .map(UserEditEntity::getPassword)
-	            .orElseThrow(() -> new RuntimeException("対象ユーザーが見つかりません（ID: " + userId + "）"));
+
+	/**
+     * 指定したユーザーID以外,メールアドレスが既に登録されているかをチェック
+     * @param address 
+     * @param userId 
+     * @return 既に存在すれば true、存在しなければ false
+     */
+    public boolean isEmailDuplicateForOtherUsers(String address, Integer userId) { 
+    	
+        int count = userEditMapper.countByAddressAndExcludeUserId(address, userId);
+        
+        return count > 0;
+    }
+	
+	/**
+	 * ユーザー情報の更新
+	 * 
+	 * @param userEditEntity
+	 */
+	public void updateUser(UserEditEntity userEditEntity) {
+
+		userEditMapper.updateUser(userEditEntity);
+	}
+
+	/**
+	 * ユーザー削除
+	 * 
+	 * @param userId
+	 */
+	public void deleteUser(Integer userId) {
+		
+		userEditMapper.deleteById(userId);
 	}
 }
