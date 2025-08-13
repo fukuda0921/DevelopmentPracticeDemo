@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "project")
+@Table(name = "project_tbl")
 public class ProjectListEntity {
 		
 		@Id
@@ -39,5 +39,9 @@ public class ProjectListEntity {
 	    
 	    @Column(name = "remarks", nullable = false)
 	    private String remarks; // 備考
+	    
+	    private String  name;
+	    
+	    private String remoteAvailabilityText; 
 	    
 	}

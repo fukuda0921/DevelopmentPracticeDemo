@@ -15,10 +15,10 @@ public class UserHomeController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/home/userDetail/{userId}")
+	@GetMapping("/home/userHome/{userId}")
 	public String userDetailPage(@PathVariable("userId") String userId, Model model) {
 		model.addAttribute("userId", userId);
-		return "userDetail"; // userDetail.htmlに遷移
+		return "userHome"; 
 	}
 
 }

@@ -86,7 +86,7 @@ public class UserRegistrationController {
 		        }
 ;			
 			userRegistrationService.saveUser(form);
-			return "redirect:/home/userDetail/" + userId;
+			return "redirect:/home/userHome/" + userId;
 		}
 	}
 }

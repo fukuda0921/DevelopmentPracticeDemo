@@ -1,242 +1,226 @@
-/* src/main/resources/static/css/projectList.css */
-
-/* 既存の共通スタイルをインポートして一貫性を保つ */
-@import url('attendanceEnd.css');
-
-body {
-    background: #1a1a1a; /* ダークな背景 */
-    color: #ffffff;      /* 明るいテキスト色 */
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* コンテンツを水平方向に中央揃え */
-    padding: 2rem;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* ページタイトルスタイリング */
-h1 {
-    color: #ffffff;
-    font-size: 3.5rem; /* 他の主要ページタイトルと同様に大きく */
-    font-weight: 100;
-    letter-spacing: 4px;
-    margin-bottom: 3rem;
-    position: relative;
-    padding-bottom: 1rem;
-    text-align: center;
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: radial-gradient(circle at 20% 20%, rgba(30,30,30,0.8), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(20,20,20,0.7), transparent 40%),
+                linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    color: #ddd;
+    min-height: 100vh;
 }
 
-h1::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ffffff, transparent);
-}
-
-/* テーブル全体のコンテナ（wrapperをbody直下に適用） */
 #wrapper {
-    width: 100%;
-    max-width: 1400px; /* 案件一覧は情報が多いため、少し広めに設定 */
-    margin: 0 auto;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-/* テーブルのスタイリング */
+.header {
+    background: linear-gradient(135deg, #2c2c2c 0%, #161616 100%);
+    padding: 3rem 0;
+    text-align: center;
+    border-bottom: 2px solid #444444;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.header h1 {
+    color: #eee;
+    font-size: 3.4rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    position: relative;
+    text-shadow: 0 0 8px #777;
+}
+
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #f0f0f0, transparent);
+    border-radius: 2px;
+}
+
+.table-container {
+    flex: 1;
+    padding: 3rem 2rem;
+    overflow-x: auto;
+}
+
 .table {
     width: 100%;
-    border-collapse: collapse; /* デフォルトのテーブルボーダーを削除 */
-    margin-bottom: 3rem; /* テーブル下のスペース */
-    background: rgba(255, 255, 255, 0.03); /* わずかに透過したダーク背景 */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* 繊細な外枠線 */
-    backdrop-filter: blur(15px); /* ブラー効果 */
-    animation: fadeIn 0.8s ease-out; /* フェードインアニメーション */
-    overflow-x: auto; /* テーブルがはみ出す場合にスクロールを可能にする */
-    -webkit-overflow-scrolling: touch; /* iOSでのスクロールをスムーズに */
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    background: transparent;
+}
+
+.table thead {
+    background: rgba(255, 255, 255, 0.07);
 }
 
 .table thead th {
-    background: rgba(255, 255, 255, 0.08); /* ヘッダーの背景色 */
-    color: #ffffff;
-    padding: 1.5rem 1rem;
-    text-align: left;
-    font-weight: 400; /* ヘッダーのフォントウェイト */
+    color: #bbb;
+    padding: 1.3rem 1.2rem;
+    font-weight: 400;
     font-size: 1rem;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* ヘッダー下の境界線 */
-    white-space: nowrap; /* ヘッダーテキストの折り返しを防ぐ */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: none;
+    text-align: center;
+    user-select: none;
 }
 
 .table tbody tr {
-    transition: background 0.3s ease;
-}
-
-.table tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.02); /* ゼブラストライピング効果 */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
 }
 
 .table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.05); /* ホバー時の背景色 */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.12);
 }
 
 .table tbody td {
-    padding: 1.2rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* 行間の境界線 */
-    color: #e0e0e0; /* ボディテキストの色 */
+    padding: 1.3rem 1.1rem;
+    font-size: 0.9rem;
     font-weight: 300;
-    white-space: nowrap; /* セルのテキストの折り返しを防ぐ */
-    max-width: 250px; /* テキストが長すぎる場合の最大幅 */
-    overflow: hidden; /* はみ出したテキストを隠す */
-    text-overflow: ellipsis; /* はみ出したテキストを...で表示 */
+    color: #ddd;
+    text-align: center;
+    border: none;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
-/* 戻るボタンのコンテナ */
-.back-buttons-container { /* 新しいクラス名 */
+.table tbody tr + tr {
+    margin-top: 1rem;
+}
+
+.button-group {
     display: flex;
-    flex-direction: column; /* 垂直に並べる */
-    gap: 1.5rem; /* ボタン間のスペース */
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 400px; /* ボタンの最大幅を制限 */
-    align-items: center; /* ボタンを中央揃え */
+    justify-content: center;
+    gap: 1.8rem;
+    padding: 3rem 0 4rem 0;
+    flex-wrap: wrap;
 }
 
-/* ボタンの共通スタイル（attendanceEnd.cssから流用） */
-.btn-custom { /* カスタムクラス名に変更 */
+.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    padding: 1.2rem 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-decoration: none;
+    padding: 1.2rem 3rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 150px;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.07);
+    color: #eee;
+    min-width: 220px;
+    user-select: none;
     position: relative;
     overflow: hidden;
-    color: #ffffff; /* ボタンのテキスト色 */
-    background: transparent; /* 背景は透明に */
 }
 
-.btn-custom::before {
+.btn::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -110%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+    border-radius: 20px;
 }
 
-.btn-custom:hover::before {
-    left: 100%;
+.btn:hover::before {
+    left: 110%;
 }
 
-.btn-custom:hover {
-    background: rgba(255, 255, 255, 0.05); /* ホバー時の背景色 */
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    transform: translateY(-2px);
+.btn-primary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 24px rgba(255,255,255,0.3);
+    transform: translateY(-3px);
 }
 
-.btn-custom:active {
-    transform: translateY(0);
+.btn-secondary {
+    background: transparent;
+    color: #bbb;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* アニメーション */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #eee;
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.25);
 }
 
-/* レスポンシブデザイン */
 @media (max-width: 1024px) {
+    .header h1 {
+        font-size: 2.8rem;
+    }
+    .table-container {
+        padding: 2rem 1rem;
+    }
+    .table thead th,
     .table tbody td {
-        max-width: 200px; /* 画面サイズに合わせて調整 */
+        font-size: 0.85rem;
+        padding: 1rem 0.8rem;
+    }
+    .btn {
+        min-width: 180px;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    body {
-        padding: 1rem;
+    .header {
+        padding: 2rem 0;
     }
-
-    h1 {
-        font-size: 2.5rem;
+    .header h1 {
+        font-size: 2.2rem;
         letter-spacing: 3px;
-        margin-bottom: 2rem;
     }
-
+    .table-container {
+        padding: 1.5rem 0.8rem;
+    }
     .table thead th,
     .table tbody td {
-        padding: 1rem 0.8rem;
-        font-size: 0.9rem;
-        white-space: normal; /* 小画面では折り返しを許可 */
+        font-size: 0.8rem;
+        padding: 0.8rem 0.5rem;
     }
-
-    .table tbody td {
-        max-width: none; /* 小画面では最大幅を解除 */
-        text-overflow: clip; /* ...表示を解除 */
-    }
-
-    .back-buttons-container {
+    .button-group {
+        flex-direction: column;
         gap: 1rem;
+        padding: 2rem 0;
+        align-items: center;
     }
-
-    .btn-custom {
+    .btn {
         width: 100%;
         max-width: 280px;
-        padding: 1rem 2rem;
-        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 0.5rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
-    }
-
-    h1::after {
-        width: 60px;
-        height: 1px;
-    }
-
     .table thead th,
     .table tbody td {
-        padding: 0.8rem 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .back-buttons-container {
-        gap: 0.8rem;
-    }
-
-    .btn-custom {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        padding: 0.6rem 0.4rem;
     }
 }

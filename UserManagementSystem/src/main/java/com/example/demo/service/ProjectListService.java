@@ -30,7 +30,31 @@ public class ProjectListService {
 	 * @return
 	 */
 	public List<ProjectListEntity> getProjectListByUserId(Integer userId) {
-		return projectListMapper.findByUserId(userId);
+		
+		List<ProjectListEntity> list =projectListMapper.findByUserId(userId);
+		
+		for (ProjectListEntity project : list) {
+	        project.setRemoteAvailabilityText(convertRemoteAvailability(project.getRemoteAvailability()));
+	    }
+
+	    return list;
+	}
+	
+	/**
+	 * 変換処理
+	 * 
+	 * @param code
+	 * @return
+	 */
+	private String convertRemoteAvailability(String code) {
+	    if (code == null) return "未設定";
+
+	    switch (code) {
+	        case "1": return "フルリモート";
+	        case "2": return "リモート併用";
+	        case "3": return "常駐";
+	        default: return "未設定";
+	    }
 	}
 
 }

@@ -41,7 +41,7 @@ public class UserListController {
 		// ユーザーリストを取得
 		List<UserListEntity> userList = userListService.getAllUserList();
 
-		model.addAttribute("userList", userList); // DTOに変換したリストをModelに追加する
+		model.addAttribute("userList", userList); 
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("loginUserId", loginUserId);
 

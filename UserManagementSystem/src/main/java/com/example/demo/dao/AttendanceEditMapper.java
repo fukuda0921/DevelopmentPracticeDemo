@@ -18,6 +18,7 @@ public interface AttendanceEditMapper {
 
 	/**
 	 * 勤怠情報を更新
+	 * 
 	 * @param entity 更新対象の勤怠エンティティ
 	 * @return 更新されたレコードの数
 	 */
@@ -25,6 +26,7 @@ public interface AttendanceEditMapper {
 
 	/**
 	 * 勤怠IDで勤怠情報を削除
+	 * 
 	 * @param attendanceId 削除対象の勤怠ID
 	 * @return 削除されたレコードの数
 	 */

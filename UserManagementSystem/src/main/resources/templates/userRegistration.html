@@ -36,7 +36,8 @@
 
             <div class="form-group">
                 <label for="password" class="form-label">パスワード:</label>
-                <input type="password" id="password" th:field="*{password}" maxlength="60" autocomplete="new-password" class="form-input">
+                <input type="password" id="password" th:field="*{password}" maxlength="60" autocomplete="new-password"
+                    class="form-input">
                 <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
             </div>
 
@@ -52,7 +53,7 @@
 
             <div class="button-group">
                 <button type="submit" class="btn btn-primary-custom">登録</button>
-                <a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn btn-secondary-custom">戻る</a>
+                <a th:href="@{/home/userHome/{userId}(userId=${userId})}" class="btn btn-secondary-custom">戻る</a>
             </div>
         </form>
     </div>

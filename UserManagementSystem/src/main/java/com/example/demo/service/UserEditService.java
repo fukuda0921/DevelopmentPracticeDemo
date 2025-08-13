@@ -51,7 +51,7 @@ public class UserEditService {
 	}
 
 	/**
-	 * 画面に入力された値を保持しているDTOからEntityへの変換メソッドを追加
+	 * 画面に入力された値を保持しているDTOからEntityへの変換メソッド
 	 * 
 	 * @param dto
 	 * @return

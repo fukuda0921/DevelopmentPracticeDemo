@@ -65,7 +65,6 @@ public class LeavingRegisterController {
 		}
 
 		// 入力された退勤情報が登録済みの場合（業務チェック）
-		//	サービス層で「退勤日が重複していないか」をチェック、結果をcontrollerに返却
 		if (form.getEndDate() != null &&
 				leavingRegisterService.isDuplicateAttendance(userId, form.getEndDate())) {
 			result.rejectValue("endDate", "", ErrorMessage.DUPLICATE_LEAVING_WORK);
@@ -75,7 +74,6 @@ public class LeavingRegisterController {
 		if (result.hasErrors()) {
 			return "attendanceEnd";
 		}
-		// --- ここから最新の出勤レコード取得して退勤時間更新処理 ---
 
 		// 最新の出勤レコード取得
 		Optional<LeavingRegisterEntity> latestAttendanceOpt = leavingRegisterService.getLatestAttendanceByUserId(userId,
@@ -84,7 +82,7 @@ public class LeavingRegisterController {
 		if (latestAttendanceOpt.isPresent()) {
 			LeavingRegisterEntity attendance = latestAttendanceOpt.get();
 
-			// 退勤日・退勤時間を現在日時にセット（必要に応じてフォーム値に変えてもOK）
+			// 退勤日・退勤時間を現在日時にセット
 			attendance.setEndDate(form.getEndDate());
 			attendance.setEndTime(form.getEndTime());
 			attendance.setBreakTime(form.getBreakTime());

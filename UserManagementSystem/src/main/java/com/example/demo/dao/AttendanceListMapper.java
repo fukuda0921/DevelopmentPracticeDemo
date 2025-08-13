@@ -12,6 +12,7 @@ public interface AttendanceListMapper {
 
 	/**
 	 * 指定されたユーザーIDの全ての勤怠情報を取得
+	 * 
 	 * @param userId ユーザーID
 	 * @return 勤怠情報のリスト
 	 */

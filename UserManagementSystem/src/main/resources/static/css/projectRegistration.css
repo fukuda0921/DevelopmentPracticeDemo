@@ -1,6 +1,5 @@
 /* src/main/resources/static/css/projectRegistration.css */
 
-/* 全体のリセットと基本スタイル */
 * {
     margin: 0;
     padding: 0;
@@ -9,279 +8,182 @@
 
 body {
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    /* 背景を深い青紫系のグラデーションに統一 */
-    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a40 100%);
+    background: radial-gradient(circle at 20% 20%, rgba(192, 192, 192, 0.05), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.05), transparent 40%),
+                linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     min-height: 100vh;
-    color: #e0e0e0; /* 明るめのグレー */
-    line-height: 1.6;
+    color: #e0e0e0;
     display: flex;
-    justify-content: center; /* コンテンツを中央に配置 */
-    align-items: center; /* コンテンツを中央に配置 */
-    padding: 2rem; /* 全体のパディング */
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
-/* ページ全体のラッパー */
 #wrapper {
-    min-height: 100vh; /* 画面全体の高さ */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 中央揃え */
-    width: 100%; /* コンテナ幅を100%に */
-    max-width: 800px; /* フォームの最大幅に合わせる */
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-/* ヘッダー */
 .header {
     text-align: center;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 細くシャープなライン */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     width: 100%;
 }
 
 .header h1 {
     color: #ffffff;
-    font-size: 3.5rem; /* 大きなフォントサイズ */
-    font-weight: 200; /* 細いフォント */
+    font-size: 3.2rem;
+    font-weight: 200;
     letter-spacing: 3px;
     position: relative;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* テキストに軽いシャドウ */
 }
 
 .header h1::after {
-    /* ヘッダー下部のグラデーションライン */
     content: '';
     position: absolute;
-    bottom: -10px; /* 位置調整 */
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #00bfff, transparent); /* 青のグラデーション */
-    border-radius: 1px;
+    background: linear-gradient(90deg, transparent, #b0b0b0, transparent);
 }
 
-/* フォーム全体（ガラスモーフィズム効果） */
 .glassmorphism-form {
-    background-color: rgba(255, 255, 255, 0.08); /* 半透明の背景 */
-    border-radius: 16px; /* 大きな角丸 */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* ガラスモーフィズムのシャドウ */
-    backdrop-filter: blur(10px); /* 強めのぼかし */
-    -webkit-backdrop-filter: blur(10px); /* Safari対応 */
-    border: 1px solid rgba(255, 255, 255, 0.18); /* 薄いボーダー */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 3rem;
-    width: 100%; /* 親要素の幅いっぱいに */
+    width: 100%;
     display: flex;
-    flex-direction: column; /* フォーム内の要素を縦に並べる */
-    align-items: center; /* 中央揃え */
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 各フォームグループ */
 .form-group {
-    width: 100%; /* フォームの幅いっぱいに広げる */
-    margin-bottom: 25px; /* 各グループ間の間隔 */
-}
-
-.form-group:last-of-type {
-    margin-bottom: 0; /* 最後のフォームグループには下マージンなし */
+    width: 100%;
+    margin-bottom: 25px;
 }
 
 .form-group label {
-    display: block; /* ブロック要素にして縦に並べる */
-    margin-bottom: 10px; /* ラベルと入力フィールドの間隔 */
-    color: #c0c0c0; /* ラベルの色を少し薄く */
-    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 10px;
+    color: #cccccc;
+    font-size: 1rem;
     font-weight: 500;
 }
 
 .form-input {
     width: 100%;
     padding: 14px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* 薄いボーダー */
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1); /* 半透明の背景 */
+    background-color: rgba(255, 255, 255, 0.08);
     color: #ffffff;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 軽いシャドウ */
-    -webkit-appearance: none; /* デフォルトスタイルをリセット */
-    -moz-appearance: none;
-    appearance: none;
 }
 
 .form-input:focus {
-    border-color: #00bfff; /* フォーカス時のボーダー色 */
+    border-color: rgba(192, 192, 192, 0.8);
     outline: none;
-    background-color: rgba(255, 255, 255, 0.15); /* フォーカス時に少し濃く */
-    box-shadow: 0 0 0 4px rgba(0, 191, 255, 0.3); /* フォーカス時のシャドウ */
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
 }
 
-/* 非活性のinputフィールドのスタイル */
+.form-input:hover {
+    border-color: rgba(192, 192, 192, 0.6);
+}
+
 .form-input.disabled-input {
-    background-color: rgba(255, 255, 255, 0.05); /* より薄い背景 */
-    color: rgba(255, 255, 255, 0.5); /* 文字色を薄く */
-    border-color: rgba(255, 255, 255, 0.15);
-    cursor: not-allowed; /* カーソル変更 */
+    background-color: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
     box-shadow: none;
 }
 
-/* セレクトボックスの右端に下向き矢印アイコンを配置 */
 select.form-input {
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23c0c0c0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
-    background-position: right 15px center; /* アイコンの位置を調整 */
-    padding-right: 40px; /* アイコン分のパディングを確保 */
+    background-position: right 15px center;
+    padding-right: 40px;
 }
 
 option {
-    background-color: #2a2a40; /* オプションの背景色（ダークテーマに合わせる） */
-    color: #e0e0e0; /* オプションのテキスト色 */
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
 .error-message {
-    color: #ff6b6b; /* エラーメッセージの色 */
+    color: #ff6b6b;
     font-size: 0.9rem;
     margin-top: 8px;
-    display: block; /* ブロック要素にして独立させる */
 }
 
-/* ボタンのグループ */
 .button-group {
     display: flex;
-    justify-content: center; /* 中央寄せ */
-    gap: 25px; /* ボタン間のスペース */
-    margin-top: 40px; /* フォームからの距離 */
+    justify-content: center;
+    gap: 20px;
+    margin-top: 35px;
     width: 100%;
-    flex-wrap: wrap; /* 小さい画面で折り返す */
+    flex-wrap: wrap;
 }
 
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    border-radius: 10px;
+    padding: 12px 28px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
     text-align: center;
-    min-width: 180px; /* 最小幅を増やす */
+    min-width: 160px;
     cursor: pointer;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
     border: none;
 }
 
 .primary-btn {
-    background: linear-gradient(45deg, #007bff, #00bfff); /* 青系のグラデーション */
+    background: linear-gradient(45deg, #666666, #444444);
     color: #ffffff;
-    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(128, 128, 128, 0.3);
 }
 
 .primary-btn:hover {
-    background: linear-gradient(45deg, #0056b3, #0099e6);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+    background: linear-gradient(45deg, #777777, #555555);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.4);
 }
 
 .secondary-btn {
-    background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
-    color: #00bfff; /* 明るい青 */
-    border: 1px solid rgba(0, 191, 255, 0.5); /* 明るい青のボーダー */
-    box-shadow: 0 5px 20px rgba(0, 191, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #c0c0c0;
+    border: 1px solid rgba(192, 192, 192, 0.4);
 }
 
 .secondary-btn:hover {
-    background-color: rgba(0, 191, 255, 0.2);
+    background-color: rgba(192, 192, 192, 0.1);
     color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.3);
 }
 
-/* フッター */
 .footer {
     text-align: center;
     padding: 2rem 0;
-    margin-top: auto; /* フッターを下に固定 */
-    color: rgba(255, 255, 255, 0.4); /* 色を薄く */
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* 薄いボーダー */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
-}
-
-/* レスポンシブデザインの調整 */
-@media (max-width: 768px) {
-    body {
-        padding: 1.5rem;
-    }
-    .header h1 {
-        font-size: 2.8rem;
-        margin-bottom: 2.5rem;
-        padding-bottom: 1.5rem;
-    }
-    .glassmorphism-form {
-        padding: 2.5rem;
-    }
-    .form-group {
-        margin-bottom: 20px;
-    }
-    .form-group label {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-    .form-input {
-        padding: 12px 15px;
-        font-size: 0.95rem;
-    }
-    .error-message {
-        font-size: 0.85rem;
-        margin-top: 6px;
-    }
-    .button-group {
-        flex-direction: column; /* ボタンを縦並びに */
-        gap: 15px;
-        margin-top: 30px;
-    }
-    .btn {
-        width: 100%;
-        max-width: 280px; /* 幅を固定 */
-        margin: 0 auto; /* 中央寄せ */
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 1rem;
-    }
-    .header h1 {
-        font-size: 2.2rem;
-        letter-spacing: 1px;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-    }
-    .glassmorphism-form {
-        padding: 1.5rem;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        font-size: 0.95rem;
-        margin-bottom: 6px;
-    }
-    .form-input {
-        padding: 10px 12px;
-        font-size: 0.9rem;
-    }
-    .error-message {
-        font-size: 0.8rem;
-        margin-top: 5px;
-    }
-    .btn {
-        max-width: 100%; /* フル幅に */
-        min-width: unset;
-        font-size: 0.95rem;
-        padding: 10px 20px;
-    }
 }

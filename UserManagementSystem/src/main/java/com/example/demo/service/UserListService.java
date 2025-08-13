@@ -32,10 +32,6 @@ public class UserListService {
 
 		List<UserListEntity> userList = userListMapper.findAll();
 
-		if (userList.isEmpty()) {
-			throw new RuntimeException("人員情報が見つかりません");
-		}
-
 		return userList;
 	}
 

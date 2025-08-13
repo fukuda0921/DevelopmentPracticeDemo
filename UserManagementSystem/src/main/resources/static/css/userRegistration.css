@@ -1,204 +1,161 @@
 /* src/main/resources/static/css/userRegistration.css */
 
-/* 既存の共通スタイルをインポートして一貫性を保つ */
-@import url('attendanceEnd.css');
-
-body {
-    background: #1a1a1a; /* ダークな背景 */
-    color: #ffffff;      /* 明るいテキスト色 */
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* コンテンツを垂直方向に中央揃え */
-    align-items: center;     /* コンテンツを水平方向に中央揃え */
-    padding: 2rem;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* ページタイトルスタイリング */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: radial-gradient(circle at 20% 20%, rgba(192, 192, 192, 0.05), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.05), transparent 40%),
+                linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
 h1 {
-    color: #ffffff;
-    font-size: 3.5rem; /* ユーザー詳細ページと同様に大きく */
-    font-weight: 100;
-    letter-spacing: 4px;
-    margin-bottom: 3rem;
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 3px;
+    margin-bottom: 2.5rem;
     position: relative;
-    padding-bottom: 1rem;
     text-align: center;
+    color: #ffffff;
 }
 
 h1::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    background: linear-gradient(90deg, transparent, #b0b0b0, transparent);
 }
 
-/* フォームコンテナ */
 .form-container {
-    background: rgba(255, 255, 255, 0.03); /* わずかに透過したダーク背景 */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* 繊細な境界線 */
-    backdrop-filter: blur(20px); /* スタイリッシュなブラー効果 */
     width: 100%;
-    max-width: 700px; /* 最大幅を設定 */
-    animation: fadeIn 0.8s ease-out; /* フェードインアニメーション */
+    max-width: 700px;
+    animation: fadeIn 0.8s ease-out;
 }
 
-/* フォームグループ（ラベルと入力フィールドのコンテナ） */
 .form-group {
-    margin-bottom: 2.5rem; /* 要素間のスペース */
-    position: relative;
+    margin-bottom: 2rem;
 }
 
-/* ラベル */
 .form-label {
     display: block;
-    font-weight: 300;
-    color: #ffffff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    color: #cccccc;
     font-size: 0.9rem;
+    font-weight: 500;
     letter-spacing: 1px;
-    text-transform: uppercase; /* 大文字でスタイリッシュに */
 }
 
-/* 入力フィールドとセレクトボックス */
 .form-input,
 .form-select {
     width: 100%;
-    padding: 1.2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05); /* わずかに透過した背景 */
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
     font-size: 1rem;
-    font-family: inherit;
     transition: all 0.3s ease;
-    color: #ffffff; /* ここでテキスト色を明示的に指定 */
-    font-weight: 300;
-    appearance: none; /* セレクトボックスのデフォルトスタイルをリセット */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* カスタムのドロップダウン矢印 */
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1.2em;
-    cursor: pointer;
+    appearance: none;
 }
 
 .form-input:focus,
 .form-select:focus {
+    border-color: rgba(192, 192, 192, 0.8);
     outline: none;
-    border-color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
 }
 
 .form-input:hover,
 .form-select:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(192, 192, 192, 0.6);
 }
 
-/* セレクトボックスのオプションのスタイル */
-/* ドロップダウンが開いたときのオプションの背景とテキスト色を明確に設定 */
+.form-select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23c0c0c0" height="24" viewBox="0 0 24 24" width="24"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
 .form-select option {
-    background-color: #1a1a1a; /* オプションの背景色を本体の背景色に合わせる */
-    color: #ffffff;            /* オプションのテキスト色を白に */
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
-
-/* エラーメッセージ */
 .error-message {
-    display: block;
     color: #ff6b6b;
-    font-size: 0.8rem;
-    margin-top: 0.8rem;
-    padding: 0.8rem;
-    background: rgba(255, 107, 107, 0.1);
-    border-left: 2px solid #ff6b6b;
-    font-weight: 300;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
 }
 
-/* ボタンコンテナ */
 .button-group {
     display: flex;
-    gap: 2rem;
+    gap: 20px;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
     flex-wrap: wrap;
 }
 
-/* ボタン（共通スタイルを使用） */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    padding: 1.2rem 2.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-decoration: none;
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    min-width: 160px;
     cursor: pointer;
+    font-size: 1rem;
+    border: none;
     transition: all 0.3s ease;
-    min-width: 150px;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-    color: #ffffff; /* デフォルトのボタンテキスト色 */
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-/* プライマリボタン（登録） */
-.btn-primary-custom { /* カスタムクラス名で登録ボタンを差別化 */
-    background: rgba(255, 255, 255, 0.1);
+.btn-primary-custom {
+    background: linear-gradient(45deg, #666666, #444444);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(128, 128, 128, 0.3);
 }
 
 .btn-primary-custom:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: linear-gradient(45deg, #777777, #555555);
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.4);
 }
 
-/* セカンダリボタン（戻る） */
-.btn-secondary-custom { /* カスタムクラス名で戻るボタンを差別化 */
-    background: transparent;
-    color: #ccc;
-    border-color: rgba(255, 255, 255, 0.1);
+.btn-secondary-custom {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #c0c0c0;
+    border: 1px solid rgba(192, 192, 192, 0.4);
 }
 
 .btn-secondary-custom:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(192, 192, 192, 0.1);
     color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.3);
 }
 
-.btn:active {
-    transform: translateY(0);
-}
-
-/* アニメーション */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -210,69 +167,18 @@ h1::after {
     }
 }
 
-/* レスポンシブデザイン */
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
-        letter-spacing: 3px;
     }
-
     .form-container {
         padding: 2rem;
     }
-
-    .form-input,
-    .form-select {
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .form-group {
-        margin-bottom: 2rem;
-    }
-
-    .button-group {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 280px;
-        padding: 1rem 2rem;
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
-    }
-
-    h1::after {
-        width: 60px;
-        height: 1px;
-    }
-
-    .form-container {
-        padding: 1.5rem;
-    }
-
-    .form-input,
-    .form-select {
-        padding: 0.8rem;
-        font-size: 0.8rem;
-    }
-
     .form-group {
         margin-bottom: 1.5rem;
     }
-
     .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.8rem;
+        width: 100%;
+        max-width: 280px;
     }
 }

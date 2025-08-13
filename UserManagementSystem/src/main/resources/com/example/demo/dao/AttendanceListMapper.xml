@@ -8,23 +8,29 @@
 <!-- userIdに紐づく勤怠情報を取得 -->
  <select id="findByUserId"  parameterType="int" resultType="com.example.demo.entity.AttendanceListEntity">
         SELECT
-            attendance_id,
-            user_id,
-            start_date,
-            leaving_date,
-            start_time,
-            leaving_time,
-            operation_time,
-            break_time,
-            remarks
+            a.attendance_id,
+            a.user_id,
+            a.start_date,
+            a.leaving_date,
+            a.start_time,
+            a.leaving_time,
+            a.operation_time,
+            a.break_time,
+            a.remarks,
+            u.name
         FROM
-            attendance_tbl
+            attendance_tbl a
+        JOIN 
+        	user_tbl u
+        ON
+        	a.user_id = u.user_id
+        
         WHERE
-            user_id = #{userId}
+            a.user_id = #{userId}
         AND
-        	delete_flag = 0
+        	a.delete_flag = 0
         ORDER BY
-            attendance_id; 
+            a.attendance_id; 
     </select>
 	
 	

@@ -9,12 +9,8 @@ import jakarta.validation.constraints.Size;
 import com.example.demo.entity.UserEditEntity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
-@Getter
-@Setter
 public class UserEditDto {
 
 	private Integer userId; // ユーザーID
@@ -38,6 +34,9 @@ public class UserEditDto {
 	@NotNull(message = "権限を選択してください")
 	private Integer role; // 権限
 	
+	/*
+	 * コンストラクタ
+	 */
 	 public UserEditDto() {
 	        
 	    }

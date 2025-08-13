@@ -103,7 +103,6 @@ public class LeavingRegisterService {
 		}
 
 		// DurationをLocalTimeに変換
-		// (例: 25時間30分: 01:30:00)
 		return LocalTime.MIDNIGHT.plus(totalWorkDuration);
 	}
 }

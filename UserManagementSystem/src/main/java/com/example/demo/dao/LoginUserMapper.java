@@ -10,10 +10,10 @@ import com.example.demo.entity.UserEntity;
 public interface LoginUserMapper {
 
 	/**
-	 * user_id を使って user_tbl からユーザー情報を取得します。
+	 * user_id を使って user_tbl からユーザー情報を取得
 	 *
-	 * @param userId 検索するユーザーID (Integer型)
-	 * @return 該当するユーザー情報を含むOptional
+	 * @param userId 検索するユーザーID
+	 * @return 該当するユーザー情報
 	 */
 	Optional<UserEntity> findByUserId(Integer userId);
 

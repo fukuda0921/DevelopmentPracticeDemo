@@ -51,8 +51,4 @@ public class LoginUserService implements UserDetailsService {
 		return new LoginUserDetails(loginUser);
 	}
 
-//	// 任意：別用途で全ユーザー取得
-//	public List<UserPermission> getAllUsers() {
-//		return userPermissionRepository.findAll();
-//	}
 }

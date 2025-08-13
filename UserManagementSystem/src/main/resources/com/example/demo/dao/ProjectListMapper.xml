@@ -8,22 +8,27 @@
 <!-- userIdに紐づく勤怠情報を取得 -->
 <select id="findByUserId" parameterType="java.lang.Integer" resultType="com.example.demo.entity.ProjectListEntity">
         SELECT
-            project_id,           
-            user_id,
-            project_name,
-            remote_availability,
-            work_location,
-            job_description,
-            programming_language,
-            remarks
+            p.project_id,           
+            p.user_id,
+            p.project_name,
+            p.remote_availability,
+            p.work_location,
+            p.job_description,
+            p.programming_language,
+            p.remarks,
+            u.name
         FROM
-            project_tbl
+            project_tbl p
+        JOIN
+        	user_tbl u
+        ON
+        	p.user_id = u.user_id
         WHERE
-            user_id = #{userId}
+            p.user_id = #{userId}
         AND
-        	delete_flag = 0
+        	p.delete_flag = 0
         ORDER BY
-            project_id ASC
+            p.project_id ASC
     </select>
 
 	

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.ProjectListEntity;
 import com.example.demo.security.LoginUserDetails;
@@ -34,11 +35,13 @@ public class ProjectListController {
 	 * @return
 	 */
 	@GetMapping("/userDetail/projectList/{userId}")
-	public String showProjectList(@PathVariable Integer userId, Model model, LoginUserDetails loginUser) {
+	public String showProjectList(@PathVariable Integer userId, Model model, LoginUserDetails loginUser,@RequestParam(value = "backUrl", required = false) String backUrl) {
 
 		List<ProjectListEntity> projectList = projectListService.getProjectListByUserId(userId);
 		model.addAttribute("projectList", projectList);
 		model.addAttribute("userId", userId);
+		model.addAttribute("backUrl", backUrl);
+        
 		return "projectList";
 
 	}

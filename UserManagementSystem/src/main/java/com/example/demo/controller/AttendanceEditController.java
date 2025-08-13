@@ -40,12 +40,19 @@ public class AttendanceEditController {
 	 * @return
 	 */
 	@GetMapping("/attendanceEdit/{userId}/{attendanceId}")
-	public String AttendanceEdit(@PathVariable Integer userId, @PathVariable Integer attendanceId, Model model) {
+	public String AttendanceEdit(@PathVariable Integer userId, @PathVariable Integer attendanceId, Model model,@RequestParam(value = "backUrl", required = false) String backUrl) {
 
 		// 編集対象：1件のみ取得
 		AttendanceEditDto attendanceEditDto = attendanceEditService.findByAttendanceId(attendanceId);
 		model.addAttribute("attendanceEditDto", attendanceEditDto);
 		model.addAttribute("userId", userId);
+		
+		String effectiveBackUrl = backUrl;
+		if (effectiveBackUrl == null || effectiveBackUrl.isEmpty()) {
+		    effectiveBackUrl = "/home/attendance/attendanceList/" + userId + "?backUrl=/home/attendance/" + userId;
+		}
+		model.addAttribute("backUrl", effectiveBackUrl);
+
 		return "attendanceEdit";
 	}
 

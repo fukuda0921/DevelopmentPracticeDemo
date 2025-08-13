@@ -32,11 +32,6 @@ public class AttendanceListService {
 		
 		List<AttendanceListEntity> attendanceList = attendanceListMapper.findByUserId(userId);
 		
-		// リストが空かどうかをチェックし、空であればエラーをスロー
-        if (attendanceList.isEmpty()) {
-            throw new RuntimeException("対象の出勤情報が見つかりません（ユーザーID: " + userId + "）");
-        }
-		
 		return attendanceList;
 	}
 

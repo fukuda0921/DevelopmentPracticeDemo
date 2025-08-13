@@ -17,16 +17,15 @@
 
         <main class="main-content">
             <div class="form-container">
-                <form th:action="@{/home/attendance/attendanceStart/__${userId}__}" th:object="${GoingRegisterDto}" method="post" class="attendance-form">
-                    
-                    <!-- 勤怠ID（非活性） -->
+                <form th:action="@{/home/attendance/attendanceStart/__${userId}__}" th:object="${GoingRegisterDto}"
+                    method="post" class="attendance-form">
+
                     <div class="form-group">
                         <label class="form-label">勤怠ID</label>
                         <input type="text" value="自動採番されます" disabled class="form-input disabled-input" />
                         <div class="form-description">システムが自動で設定します</div>
                     </div>
 
-                    <!-- ユーザーID（非活性） -->
                     <div class="form-group">
                         <label class="form-label">ユーザーID</label>
                         <input type="text" th:value="${userId}" disabled class="form-input disabled-input" />
@@ -34,30 +33,30 @@
                         <div class="form-description">ログインユーザー</div>
                     </div>
 
-                    <!-- 出勤日 -->
                     <div class="form-group">
                         <label class="form-label required">出勤日</label>
                         <input type="date" th:field="*{startDate}" class="form-input" />
-                        <span class="error-message" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
+                        <span class="error-message" th:if="${#fields.hasErrors('startDate')}"
+                            th:errors="*{startDate}"></span>
                         <span class="error-message" th:if="${startDate != null}" th:text="${startDate}"></span>
                     </div>
 
-                    <!-- 出勤時間 -->
                     <div class="form-group">
                         <label class="form-label required">出勤時間</label>
                         <input type="time" th:field="*{startTime}" class="form-input" />
-                        <span class="error-message" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span>
+                        <span class="error-message" th:if="${#fields.hasErrors('startTime')}"
+                            th:errors="*{startTime}"></span>
                     </div>
 
-                    <!-- 備考 -->
                     <div class="form-group">
                         <label class="form-label">備考</label>
-                        <textarea th:field="*{remarks}" maxlength="100" class="form-textarea" placeholder="必要に応じて備考を入力してください（100文字以内）"></textarea>
-                        <span class="error-message" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}"></span>
+                        <textarea th:field="*{remarks}" maxlength="100" class="form-textarea"
+                            placeholder="必要に応じて備考を入力してください（100文字以内）"></textarea>
+                        <span class="error-message" th:if="${#fields.hasErrors('remarks')}"
+                            th:errors="*{remarks}"></span>
                         <div class="char-count">0 / 100</div>
                     </div>
 
-                    <!-- ボタン配置 -->
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary">
                             <span class="btn-icon">✓</span>

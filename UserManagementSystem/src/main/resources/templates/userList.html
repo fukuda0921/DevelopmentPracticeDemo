@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ユーザーリスト</title>
-    <link th:href="@{/css/userList.css}" rel="stylesheet">
+    <link th:href="@{/css/userList.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -14,10 +14,13 @@
             <h1>ユーザー一覧</h1>
         </header>
 
-        <div class="button-group top-buttons" th:if="${isAdmin}">
-            <a th:href="@{/userList/projectRegistration/{userId}(userId=${loginUserId})}" class="btn primary-btn">
-                案件登録
-            </a>
+        <div class="button-group top-buttons">
+            <a th:href="@{/home/{userId}(userId=${loginUserId})}" class="btn btn-secondary">戻る</a>
+            <th:block th:if="${isAdmin}">
+                <a th:href="@{/userList/projectRegistration/{userId}(userId=${loginUserId})}" class="btn btn-primary">
+                    案件登録
+                </a>
+            </th:block>
         </div>
 
         <div class="table-container">
@@ -42,31 +45,31 @@
 
                         <td class="action-cell">
                             <th:block th:if="${isAdmin}">
-                                <button class="action-btn edit-btn"
-                                    th:onclick="'window.location.href=\'' + @{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
-                                    編集・削除
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/userDetail/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
+                                    ユーザー詳細
                                 </button>
-                                <button class="action-btn"
-                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId})} + '\';'">
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId}, backUrl='/home/userList/' + ${loginUserId})} + '\';'">
                                     案件一覧
                                 </button>
-                                <button class="action-btn"
-                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId})} + '\';'">
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId}, backUrl='/home/userList/' + ${loginUserId})} + '\';'">
                                     勤怠一覧
                                 </button>
                             </th:block>
 
                             <th:block th:if="${!isAdmin} and ${loginUserId == user.userId}">
-                                <button class="action-btn"
-                                    th:onclick="'window.location.href=\'' + @{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/userDetail/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${user.userId})} + '\';'">
                                     ユーザー詳細
                                 </button>
-                                <button class="action-btn"
-                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId})} + '\';'">
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/userDetail/projectList/{userId}(userId=${user.userId}, backUrl='/home/userList/' + ${loginUserId})} + '\';'">
                                     案件一覧
                                 </button>
-                                <button class="action-btn"
-                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId})} + '\';'">
+                                <button class="small-btn"
+                                    th:onclick="'window.location.href=\'' + @{/home/attendance/attendanceList/{userId}(userId=${user.userId}, backUrl='/home/userList/' + ${loginUserId})} + '\';'">
                                     勤怠一覧
                                 </button>
                             </th:block>
@@ -76,12 +79,8 @@
             </table>
         </div>
 
-        <div class="button-group bottom-buttons">
-            <a th:href="@{/home/{userId}(userId=${loginUserId})}" class="btn secondary-btn">戻る</a>
-        </div>
-
         <footer class="footer">
-            </footer>
+        </footer>
     </div>
 </body>
 

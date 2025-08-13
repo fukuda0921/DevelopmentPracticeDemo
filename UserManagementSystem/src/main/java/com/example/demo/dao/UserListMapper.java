@@ -10,7 +10,7 @@ import com.example.demo.entity.UserListEntity;
 public interface UserListMapper {
 
 	/**
-	 * 全てのユーザーリストを取得※ロールはJOINして取得
+	 * 全てのユーザーリストを取得
 	 * @return ユーザー情報のリスト
 	 */
 	List<UserListEntity> findAll();

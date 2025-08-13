@@ -10,11 +10,11 @@
 
 <body>
     <h1>ホーム画面</h1>
-    
+
     <div class="button-container">
-        <a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠ボタン</a>
-        <a th:href="@{/home/userDetail/{userId}(userId=${userId})}">ユーザー情報ボタン</a>
-        <a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧ボタン</a>
+        <a th:href="@{/home/attendance/{userId}(userId=${userId})}">勤怠表</a>
+        <a th:href="@{/home/userHome/{userId}(userId=${userId})}">ユーザー情報</a>
+        <a th:href="@{/home/userList/{userId}(userId=${userId})}">ユーザー一覧</a>
     </div>
 </body>
 

@@ -44,5 +44,7 @@ public class AttendanceListEntity {
 
     @Column(length = 100)
     private String remarks; // 備考
+    
+    private String name; 
 
 }

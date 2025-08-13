@@ -12,6 +12,7 @@ public interface GoingRegisterMapper {
 
 	/**
 	 * 当日出勤情報の存在チェック
+	 * 
 	 * @param userId
 	 * @param startDate
 	 * @return
@@ -20,6 +21,7 @@ public interface GoingRegisterMapper {
 
 	/**
 	 * 出勤情報を登録
+	 * 
 	 * @param entity
 	 * @return
 	 */

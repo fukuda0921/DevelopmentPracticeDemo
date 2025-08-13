@@ -14,39 +14,40 @@
             <h1>案件一覧</h1>
         </header>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>案件ID</th>
-                    <th>ユーザーID</th>
-                    <th>案件名</th>
-                    <th>リモート可否</th>
-                    <th>稼働場所</th>
-                    <th>業務内容</th>
-                    <th>使用言語</th>
-                    <th>備考</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="project: ${projectList}" th:object="${project}">
-                    <td th:text="*{projectId}"></td>
-                    <td th:text="*{userId}"></td>
-                    <td th:text="*{projectName}"></td>
-                    <td th:text="*{remoteAvailability}"></td>
-                    <td th:text="*{workLocation}"></td>
-                    <td th:text="*{jobDescription}"></td>
-                    <td th:text="*{programmingLanguage}"></td>
-                    <td th:text="*{remarks}"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="back-buttons-container">
-            <a th:href="@{/home/userDetail/{userId}(userId=${userId})}" class="btn-custom">ユーザー詳細画面へ戻る</a>
-			<a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn-custom">ユーザー一覧画面へ戻る</a>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>案件ID</th>
+                        <th>ユーザーID</th>
+                        <th>名前</th>
+                        <th>案件名</th>
+                        <th>リモート可否</th>
+                        <th>稼働場所</th>
+                        <th>業務内容</th>
+                        <th>使用言語</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="project : ${projectList}">
+                        <td th:text="${project.projectId}"></td>
+                        <td th:text="${project.userId}"></td>
+                        <td th:text="${project.name}"></td>
+                        <td th:text="${project.projectName}"></td>
+                        <td th:text="${project.remoteAvailabilityText}"></td>
+                        <td th:text="${project.workLocation}"></td>
+                        <td th:text="${project.jobDescription}"></td>
+                        <td th:text="${project.programmingLanguage}"></td>
+                        <td th:text="${project.remarks}"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <footer class="footer">
-        </footer>
+
+        <div class="button-group">
+            <a th:href="${backUrl}" class="btn btn-primary">戻る</a>
+        </div>
     </div>
 </body>
 

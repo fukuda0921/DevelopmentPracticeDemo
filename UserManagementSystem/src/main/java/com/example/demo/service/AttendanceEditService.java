@@ -71,7 +71,6 @@ public class AttendanceEditService {
 		int updatedRows = attendanceEditMapper.update(attendanceEditentity);
 
 		if (updatedRows == 0) {
-			// ここが0になることは通常ありませんが、念のため防御的にチェック
 			throw new RuntimeException("勤怠情報の更新に失敗しました（ID: " + attendanceEditentity.getAttendanceId() + "）");
 		}
 	}
@@ -115,7 +114,6 @@ public class AttendanceEditService {
 		}
 
 		// DurationをLocalTimeに変換
-		// (例: 25時間30分: 01:30:00)
 		return LocalTime.MIDNIGHT.plus(totalWorkDuration);
 	}
 

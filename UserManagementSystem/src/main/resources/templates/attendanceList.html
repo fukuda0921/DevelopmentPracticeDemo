@@ -20,6 +20,7 @@
                     <tr>
                         <th>勤怠ID</th>
                         <th>ユーザーID</th>
+                        <th>名前</th>
                         <th>出勤日</th>
                         <th>退勤日</th>
                         <th>出勤時間</th>
@@ -34,6 +35,7 @@
                     <tr th:each="attendance : ${attendanceList}">
                         <td th:text="${attendance.attendanceId}"></td>
                         <td th:text="${attendance.userId}"></td>
+                        <td th:text="${attendance.name}"></td>
                         <td th:text="${attendance.startDate}"></td>
                         <td th:text="${attendance.leavingDate}"></td>
                         <td th:text="${attendance.startTime}"></td>
@@ -53,8 +55,7 @@
         </div>
 
         <div class="button-group">
-            <a th:href="@{/home/attendance/{userId}(userId=${userId})}" class="btn btn-primary">勤怠情報画面へ戻る</a>
-            <a th:href="@{/home/userList/{userId}(userId=${userId})}" class="btn btn-secondary">ユーザー一覧画面へ戻る</a>
+            <a th:href="${backUrl}" class="btn btn-primary">戻る</a>
         </div>
 
         <footer class="footer">
