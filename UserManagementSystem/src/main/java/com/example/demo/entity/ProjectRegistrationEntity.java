@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "project")
+@Table(name = "project_tbl")
 public class ProjectRegistrationEntity {
 	
 	@Id
@@ -39,5 +39,8 @@ public class ProjectRegistrationEntity {
     
     @Column(name = "remarks", nullable = false)
     private String remarks; // 備考
+    
+    @Column(name = "delete_flag", nullable = false)
+    private Integer deleteFlag; 
     
 }

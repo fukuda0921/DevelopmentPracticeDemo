@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ProjectRegistrationMapper">
+
+      <!-- 案件情報登録  -->
+      <insert id="addProject" parameterType="com.example.demo.entity.ProjectRegistrationEntity">
+      INSERT INTO project_tbl (
+            user_id,
+            project_name,
+            remote_availability,
+            work_location,
+            job_description,
+            programming_language,
+            remarks,
+            delete_flag
+        ) VALUES (
+            #{userId},
+            #{projectName},
+            #{remoteAvailability},
+            #{workLocation},
+            #{jobDescription},
+            #{programmingLanguage},
+            #{remarks},
+            #{deleteFlag}
+        )</insert>
+
+
+</mapper>

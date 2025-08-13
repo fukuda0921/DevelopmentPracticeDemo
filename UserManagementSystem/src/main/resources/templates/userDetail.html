@@ -1,23 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-    <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ユーザー情報</title>
-        <link th:href="@{css/userDetail.css}" rel="stylesheet">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <title>ユーザー詳細</title>
+    <link rel="stylesheet" th:href="@{/css/userDetail.css}" />
+</head>
 
-        <h1>勤怠情報</h1>
-    
-        <a th:href="@{/userDetail/userRegistration/{userId}(userId=${userId})}">ユーザー登録</a><br>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>ユーザー詳細</h1>
+        </header>
 
-        <a th:href="@{/user/projectList/{userId}(userId=${userId})}">案件一覧</a>
+        <main class="main-content">
+            <section class="user-info-section">
+                <h2>ユーザー情報</h2>
+                <table class="user-info-table">
+                    <tbody>
+                        <tr>
+                            <th>ユーザーID</th>
+                            <td th:text="${userDetail.userId}"></td>
+                        </tr>
+                        <tr>
+                            <th>氏名</th>
+                            <td th:text="${userDetail.name}"></td>
+                        </tr>
+                        <tr>
+                            <th>フリガナ</th>
+                            <td th:text="${userDetail.kana}"></td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td th:text="${userDetail.address}"></td>
+                        </tr>
+                        <tr>
+                            <th>役割</th>
+                            <td th:text="${userDetail.role == 1 ? '管理者' : '一般'}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-group">
+                    <form
+                        th:action="@{/home/userList/userEdit/{loginUserId}/{targetUserId}(loginUserId=${loginUserId}, targetUserId=${userDetail.userId})}"
+                        method="get">
+                        <button type="submit" class="btn btn-edit">ユーザー編集</button>
+                    </form>
+                </div>
+            </section>
 
-        <a th:href="@{/userDetail/projectList/{userId}(userId=${userId})}">案件一覧</a>
-    </body>
-    </html>
+            <div class="back-button-container">
+                <a th:href="@{/home/userList/{userId}(userId=${loginUserId})}" class="btn btn-back">戻る</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

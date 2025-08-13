@@ -20,15 +20,14 @@ import com.example.demo.service.GoingRegisterService;
 public class GoingRegisterController {
 
 	/** 出勤登録画面Service */
-    private final GoingRegisterService goingRegisterService;
+	private final GoingRegisterService goingRegisterService;
 
-    
 	/**
 	 * コンストラクタインジェクション
 	 * 
 	 * @param goingRegisterService 出勤登録画面Service
 	 */
-	public GoingRegisterController (GoingRegisterService goingRegisterService) {
+	public GoingRegisterController(GoingRegisterService goingRegisterService) {
 		this.goingRegisterService = goingRegisterService;
 	}
 
@@ -41,8 +40,8 @@ public class GoingRegisterController {
 	 */
 	@GetMapping("/home/attendance/attendanceStart/{userId}")
 	public String attendanceStart(@PathVariable String userId, Model model) {
-		model.addAttribute("userId", userId); // ← 画面に渡す
-		model.addAttribute("GoingRegisterDto", new GoingRegisterDto()); // フォーム用オブジェクト
+		model.addAttribute("userId", userId); 
+		model.addAttribute("GoingRegisterDto", new GoingRegisterDto()); 
 		return "attendanceStart";
 	}
 
